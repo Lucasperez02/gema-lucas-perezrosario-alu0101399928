@@ -1,6 +1,6 @@
 module GemaAparcamiento
 
-    class Funcionalidades
+    module Funcionalidades
   
     end
   
