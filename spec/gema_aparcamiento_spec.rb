@@ -5,9 +5,7 @@ RSpec.describe GemaAparcamiento do
     expect(GemaAparcamiento::VERSION).not_to be nil
   end
 
-  # it "does something useful" do
-  #   expect(false).to eq(true)
-  # end
+
   describe GemaAparcamiento::Datos do
     before (:all) do
       @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120)
@@ -39,6 +37,7 @@ RSpec.describe GemaAparcamiento do
       expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 45)}.to raise_error(ArgumentError) #El numeor de plazas ocupadas debe ser < numero de plazas
     end
 
+    
     it "Probando la función para obtener el número de plazas del aparcamiento" do
       expect(@apar1.get_plazas_totales()).to eq(200)
       expect(@apar2.get_plazas_totales()).to eq(20)
