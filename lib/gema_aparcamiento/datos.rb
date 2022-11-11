@@ -58,6 +58,10 @@ module GemaAparcamiento
       end
     end
 
+    def get_plazas_totales()
+      @plazas
+    end
+
 
 
   end
