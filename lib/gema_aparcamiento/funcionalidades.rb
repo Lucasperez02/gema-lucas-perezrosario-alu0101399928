@@ -1,12 +1,13 @@
 module GemaAparcamiento
 
     module Funcionalidades
-        #Constantes para el estado del aparcamiento
+        # == Constantes para el estado del aparcamiento
         APAR_LLENO = "Lleno"
         APAR_LIBRE = "Libre"
 
+        # = Función para comprobar el estado del aparcamiento
         def Funcionalidades.estado_de_aparcamiento (aparcamiento)
-            #Excepción para comprobar que el objeto que se pasa es un Datos
+            # == Excepción para comprobar que el objeto que se pasa es un Datos
             if !(aparcamiento.is_a? GemaAparcamiento::Datos)
                 raise ArgumentError.new("El objeto debe ser de la clase Dato")
             end
