@@ -1,7 +1,7 @@
 module GemaAparcamiento
 
   class Datos
-    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :plazas, :plazas_ocupadas
+    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :plazas_ocupadas
     def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas)
       #Excepciones para accesibilidad
       if !(accesibilidad.is_a? Integer) or accesibilidad < 0
@@ -41,12 +41,24 @@ module GemaAparcamiento
       if !(plazas_ocupadas.is_a? Integer) or plazas_ocupadas < 0
         raise ArgumentError.new("El valor de plazas_ocupadas debe ser un int positivo")
       end
-      
+      if plazas_ocupadas > plazas
+        raise ArgumentError.new("El númeor de plazas ocupadas debe ser menor que las plazas totales")
+      end
       #Inicializando las valiables de instancia
       @accesibilidad, @seguridad, @id = accesibilidad, seguridad, id
       @nombre_comercial, @descripcion, @tipo_aparcamiento = nombre_comercial, descripcion, tipo_aparcamiento
       @plazas, @plazas_ocupadas = plazas, plazas_ocupadas
+
+      #Constantes con las medidas de los aparcamientos según el tipo de aparcamiento
+      case tipo_aparcamiento
+        when tipo_aparcamiento == "autobuses" then @AUTOBUS = [3, 10, 3]
+        when tipo_aparcamiento == "coches" then @COCHE = [2, 3.5, 2]
+        when tipo_aparcamiento == "motos" then @MOTO = [2, 2, 2]
+        when tipo_aparcamiento == "bicicletas" then @BICICLETA = [2, 1.5, 1.5]
+      end
     end
+
+
 
   end
 
