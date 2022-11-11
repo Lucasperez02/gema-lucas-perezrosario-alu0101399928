@@ -18,3 +18,6 @@ En este commit se añaden las expectativas añadidas en el fichero de expectativ
 La función get_plazas_totales devuelve las plazas del aparcamiento, que es una variable de instancia de la la clase.
 La función plazas_libres devuelve el número de plazas totales del aparcamiento, para ello hace la resta de las plazas totales con las plazas ocupadas.
 Por último, la función to_s mostrará la información del aparcamiento en un string
+
+##Expectativas para las contantes del módulo Funcionalidades en el módulo GemaAparacamiento
+En el módulo GemaAparcamiento se ha declarado otro módulo llamado Funcionalidades. Por ahora este módulo tiene unas contantes para indicar si el aparcamiento está lleno o libre. He definido unas expectativas cada una en su bloque it para comprobar el funcionamiento de estas constantes
