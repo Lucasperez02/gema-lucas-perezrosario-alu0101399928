@@ -69,11 +69,11 @@ RSpec.describe GemaAparcamiento do
     end
 
     it "Probanod la función estado_de_aparcamiento" do
-      expect(GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(aparcamiento_libre)).to eq(GemaAparcamiento::Funcionalidades::APAR_LIBRE)
+      expect(GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(@aparcamiento_libre)).to eq(GemaAparcamiento::Funcionalidades::APAR_LIBRE)
 
-      expect(GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(aparcamiento_lleno)).to eq(GemaAparcamiento::Funcionalidades::APAR_LLENO)
+      expect(GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(@aparcamiento_lleno)).to eq(GemaAparcamiento::Funcionalidades::APAR_LLENO)
 
-      expect{GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(1)}.to raise_error(ArgumentError) #El objeto debe ser de la clase Dato
+      expect{GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(1)}.to raise_error(ArgumentError) #El objeto debe ser de la clase Dato 
     end
 
 
