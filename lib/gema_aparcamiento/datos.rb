@@ -58,14 +58,15 @@ module GemaAparcamiento
       end
     end
 
+    #Método para obtener el número de plazas totales
     def get_plazas_totales()
       @plazas
     end
-
+    #Método para obtener el número de plazas libres
     def plazas_libres()
       @plazas - @plazas_ocupadas
     end
-
+    #Método para mostrar los datos del aparcamiento por pantalla
     def to_s()
       "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas} y #{@plazas_ocupadas} ocupadas"
     end  
