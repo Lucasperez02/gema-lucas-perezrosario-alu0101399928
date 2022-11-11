@@ -57,7 +57,7 @@ module GemaAparcamiento
         when tipo_aparcamiento == "bicicletas" then @BICICLETA = [2, 1.5, 1.5]
       end
     end
-
+ 
     #Método para obtener el número de plazas totales
     def get_plazas_totales()
       @plazas
