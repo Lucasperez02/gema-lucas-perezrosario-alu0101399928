@@ -60,9 +60,9 @@ RSpec.describe GemaAparcamiento do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
     end
  
-    # it "Probando la constante LIBRE" do
-    #   expect(GemaAparcamiento::Funcionalidades::APAR_LIBRE).to eq ("Libre")
-    # end
+    it "Probando la constante LIBRE" do
+      expect(GemaAparcamiento::Funcionalidades::APAR_LIBRE).to eq ("Libre")
+    end
 
 
   end
