@@ -54,8 +54,16 @@ RSpec.describe GemaAparcamiento do
       expect(@apar2.to_s()).to eq("Aparcamiento con accesibilidad 4, seguridad 10 e id 43961. Establecimiento en HiperDino, Cubierto y del tipo motos. Plazas totales 20 y 5 ocupadas")
     end
   end
-  
+
   describe GemaAparcamiento::Funcionalidades do
+    it "Probando la constante LLENO" do
+      expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
+    end
+ 
+    # it "Probando la constante LIBRE" do
+    #   expect(GemaAparcamiento::Funcionalidades::APAR_LIBRE).to eq ("Libre")
+    # end
+
 
   end
 end
