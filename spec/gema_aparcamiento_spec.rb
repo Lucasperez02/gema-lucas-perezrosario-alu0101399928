@@ -56,12 +56,24 @@ RSpec.describe GemaAparcamiento do
   end
 
   describe GemaAparcamiento::Funcionalidades do
+    before (:all) do
+      @aparcamiento_libre = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120)
+      @aparcamiento_lleno = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 20)
+    end
     it "Probando la constante LLENO" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
     end
  
     it "Probando la constante LIBRE" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LIBRE).to eq ("Libre")
+    end
+
+    it "Probanod la función estado_de_aparcamiento" do
+      expect(GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(aparcamiento_libre)).to eq(GemaAparcamiento::Funcionalidades::APAR_LIBRE)
+
+      expect(GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(aparcamiento_lleno)).to eq(GemaAparcamiento::Funcionalidades::APAR_LLENO)
+
+      expect{GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(1)}.to raise_error(ArgumentError) #El objeto debe ser de la clase Dato
     end
 
 
