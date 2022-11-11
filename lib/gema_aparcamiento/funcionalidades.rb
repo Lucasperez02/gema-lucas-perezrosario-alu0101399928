@@ -6,6 +6,7 @@ module GemaAparcamiento
         APAR_LIBRE = "Libre"
 
         def Funcionalidades.estado_de_aparcamiento (aparcamiento)
+            #Excepción para comprobar que el objeto que se pasa es un Datos
             if !(aparcamiento.is_a? GemaAparcamiento::Datos)
                 raise ArgumentError.new("El objeto debe ser de la clase Dato")
             end
