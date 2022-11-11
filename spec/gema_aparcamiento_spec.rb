@@ -10,7 +10,7 @@ RSpec.describe GemaAparcamiento do
   # end
   describe GemaAparcamiento::Datos do
     before (:all) do
-      @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 100)
+      @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120)
       @apar2 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 5)
     end
 
@@ -42,6 +42,11 @@ RSpec.describe GemaAparcamiento do
     it "Probando la función para obtener el número de plazas del aparcamiento" do
       expect(@apar1.get_plazas_totales()).to eq(200)
       expect(@apar2.get_plazas_totales()).to eq(20)
+    end
+    
+    it "Probanod método para devolver el número de plazas libres" do
+      expect(@apar1.plazas_libres()).to eq(80)
+      expect(@apar2.plazas_libres()).to eq(15)
     end  
   end
   
