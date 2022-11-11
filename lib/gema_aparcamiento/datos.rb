@@ -66,6 +66,10 @@ module GemaAparcamiento
       @plazas - @plazas_ocupadas
     end
 
+    def to_s()
+      "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas} y #{@plazas_ocupadas} ocupadas"
+    end  
+
   end
 
 end
