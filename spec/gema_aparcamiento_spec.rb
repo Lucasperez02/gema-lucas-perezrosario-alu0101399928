@@ -47,7 +47,12 @@ RSpec.describe GemaAparcamiento do
     it "Probanod método para devolver el número de plazas libres" do
       expect(@apar1.plazas_libres()).to eq(80)
       expect(@apar2.plazas_libres()).to eq(15)
-    end  
+    end
+    
+    it "Probando función to_s" do
+      expect(@apar1.to_s()).to eq("Aparcamiento con accesibilidad 3, seguridad 8 e id 23414. Establecimiento en Carrefour, Mixto y del tipo coches. Plazas totales 200 y 120 ocupadas")
+      expect(@apar1.to_s()).to eq("Aparcamiento con accesibilidad 4, seguridad 10 e id 43961. Establecimiento en HiperDino, Cubierto y del tipo motos. Plazas totales 20 y 5 ocupadas")
+    end
   end
   
   describe GemaAparcamiento::Funcionalidades do
