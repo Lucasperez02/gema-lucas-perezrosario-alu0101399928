@@ -21,3 +21,7 @@ Por último, la función to_s mostrará la información del aparcamiento en un s
 
 ##Expectativas para las contantes del módulo Funcionalidades en el módulo GemaAparacamiento
 En el módulo GemaAparcamiento se ha declarado otro módulo llamado Funcionalidades. Por ahora este módulo tiene unas contantes para indicar si el aparcamiento está lleno o libre. He definido unas expectativas cada una en su bloque it para comprobar el funcionamiento de estas constantes
+
+##Expectativas para probar la función estado_de_aparcamiento y desarrollo del propio módulo
+He definido las expectativas para comprobar el funcionamiento de la función estado_de_aparcamiento. Esta función está declarada en el módulo Funcionalidades del módulo GemaAparcamiento. La función devuelve la constante correspondiente en cada caso dependiendo de si el número de plazas libres es 0 se delvuelve la constante APAR_LLENO
+en el caso que las plazas libres sean diferentes a 0 la función devolverá la constante APAR_LIBRE
