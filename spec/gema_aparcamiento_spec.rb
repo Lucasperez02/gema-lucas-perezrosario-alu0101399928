@@ -43,7 +43,7 @@ RSpec.describe GemaAparcamiento do
       expect(@apar1.get_plazas_totales()).to eq(200)
       expect(@apar2.get_plazas_totales()).to eq(20)
     end
-    
+
     it "Probanod método para devolver el número de plazas libres" do
       expect(@apar1.plazas_libres()).to eq(80)
       expect(@apar2.plazas_libres()).to eq(15)

@@ -62,7 +62,9 @@ module GemaAparcamiento
       @plazas
     end
 
-
+    def plazas_libres()
+      @plazas - @plazas_ocupadas
+    end
 
   end
 
