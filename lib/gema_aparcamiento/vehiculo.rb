@@ -28,6 +28,12 @@ module GemaAparcamiento
             @id = id
             @altura, @anchura, @largo, @peso = altura, anchura, largo, peso
 
+            if defined?(@@numero_vehiculos)
+                @@numero_vehiculos += 1
+              else
+                @@numero_vehiculos = 1
+            end
+
         end
     end
 
