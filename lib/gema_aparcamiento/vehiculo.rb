@@ -9,20 +9,20 @@ module GemaAparcamiento
                 raise ArgumentError.new("El valor del id debe ser un int positivo")
             end
             #Excepciones para altura
-            if !(altura.is_a? Float) or altura < 0
-                raise ArgumentError.new("El valor de la altura debe ser un float positivo")
+            if !(altura.is_a? Numeric) or altura < 0
+                raise ArgumentError.new("El valor de la altura debe ser un Numeric positivo")
             end
             #Excepciones para anchura
-            if !(anchura.is_a? Float) or anchura < 0
-                raise ArgumentError.new("El valor de la anchura debe ser un float positivo")
+            if !(anchura.is_a? Numeric) or anchura < 0
+                raise ArgumentError.new("El valor de la anchura debe ser un Numeric positivo")
             end
             #Excepciones para largo
-            if !(largo.is_a? Float) or largo < 0
-                raise ArgumentError.new("El valor del largo debe ser un float positivo")
+            if !(largo.is_a? Numeric) or largo < 0
+                raise ArgumentError.new("El valor del largo debe ser un Numeric positivo")
             end
             #Excepciones para peso
-            if !(peso.is_a? Float) or peso < 0
-                raise ArgumentError.new("El peso debe ser un float positivo")
+            if !(peso.is_a? Numeric) or peso < 0
+                raise ArgumentError.new("El peso debe ser un Numeric positivo")
             end
 
             @id = id
