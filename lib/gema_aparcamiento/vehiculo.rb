@@ -36,6 +36,10 @@ module GemaAparcamiento
 
         end
 
+        def to_s()
+            "Vehiculo con id #{@id}, altura #{@altura} m, anchura #{@anchura} m, largo #{@largo} m y un peso de #{@peso} kg"
+        end
+
         def self.count()
             @@numero_vehiculos
         end

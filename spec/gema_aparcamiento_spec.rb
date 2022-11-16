@@ -83,7 +83,7 @@ RSpec.describe GemaAparcamiento do
   describe GemaAparcamiento::Vehiculo do
     before (:all) do
       @veh1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
-      @veh2 = GemaAparcamiento::Vehiculo.new(12344, 1.45, 2.0, 4.3, 700.0)
+      @veh2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)
     end
     it "Probando initialize de vehiculo" do
       expect(GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)).not_to eq(nil)
@@ -102,9 +102,10 @@ RSpec.describe GemaAparcamiento do
     it "Probando el variable de clase numero_vehiculo" do
       expect(GemaAparcamiento::Vehiculo.count()).to eq(3)
     end
-    is "Probando función to_s" do
-      expect(@veh1.to_s()).to eq("Vehiculo con id 54321, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700 kg")
-      expect(@veh1.to_s()).to eq("Vehiculo con id 12344, altura 1.79 m, anchura 1.85 m, largo 5.26 m y un peso de 1200 kg")
+
+    it "Probando función to_s" do
+      expect(@veh1.to_s()).to eq("Vehiculo con id 54321, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg")
+      expect(@veh2.to_s()).to eq("Vehiculo con id 12344, altura 1.79 m, anchura 1.85 m, largo 5.26 m y un peso de 1200 kg")
     end
   
   end
