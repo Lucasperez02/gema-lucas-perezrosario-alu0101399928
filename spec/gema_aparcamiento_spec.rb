@@ -79,7 +79,6 @@ RSpec.describe GemaAparcamiento do
 
   end
 
-
   describe GemaAparcamiento::Vehiculo do
     before (:all) do
       @veh1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
@@ -111,6 +110,7 @@ RSpec.describe GemaAparcamiento do
 
 
     it "Probando la función de comparación" do
+     
     expect(@veh1 > @veh2).to eq(false)
     expect(@veh1 < @veh2).to eq(true)
     expect(@veh1 == @veh3).to eq(true)

@@ -43,6 +43,12 @@ module GemaAparcamiento
         def self.count()
             @@numero_vehiculos
         end
+
+        def <=>(other)
+            return nil unless other.instance_of?GemaAparcamiento::Vehiculo
+                
+            self.anchura * self.altura * self.largo <=> other.anchura * other.altura * other.largo
+        end
     end
 
 end
