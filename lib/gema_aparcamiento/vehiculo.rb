@@ -35,6 +35,10 @@ module GemaAparcamiento
             end
 
         end
+
+        def self.count()
+            @@numero_vehiculos
+        end
     end
 
 end

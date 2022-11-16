@@ -104,7 +104,7 @@ RSpec.describe GemaAparcamiento do
       
     end
     it "Probando el variable de clase numero_vehiculo" do
-      expect(GemaAparcamiento::Vehiculo.count()).to eq(2) 
+      expect(GemaAparcamiento::Vehiculo.count()).to eq(3)
     end
   
   end
