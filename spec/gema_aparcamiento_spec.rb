@@ -78,4 +78,12 @@ RSpec.describe GemaAparcamiento do
 
 
   end
+
+  describe GemaAparcamiento::Vehiculo do
+  
+  end
+
+  describe GemaAparcamiento::Motor do
+
+  end
 end
