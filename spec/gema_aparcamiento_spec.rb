@@ -79,7 +79,25 @@ RSpec.describe GemaAparcamiento do
 
   end
 
+
   describe GemaAparcamiento::Vehiculo do
+    it "Probando initialize de vehiculo" do
+      expect(GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)).not_to eq(nil)
+      expect{GemaAparcamiento::Vehiculo.new(-12334, 1.45, 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor del id debe ser un int positivo
+      expect{GemaAparcamiento::Vehiculo.new("12334", 1.45, 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor del id debe ser un int positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, -1.45, 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la altura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, "1.45", 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la altura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 3, 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la altura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, -2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la anchura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, "2.0", 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la anchura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la anchura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, -4.3, 700.0)}.to raise_error(ArgumentError) #El valor del largo debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, "4.3", 700.0)}.to raise_error(ArgumentError) #El valor del largo anchura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, 4, 700.0)}.to raise_error(ArgumentError) #El valor del largo debe ser un float positivo  
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, 4.3, -700.0)}.to raise_error(ArgumentError) #El peso debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, 4.3, "700.0")}.to raise_error(ArgumentError) #El peso anchura debe ser un float positivo
+      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, 4.3, 700)}.to raise_error(ArgumentError) #El peso debe ser un float positivo     
+    end
   
   end
 
