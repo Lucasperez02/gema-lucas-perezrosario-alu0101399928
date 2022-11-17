@@ -77,3 +77,6 @@ En este caso para comparar los vehiculos de motor se hará mediante su n_plazas
 ### Expectativas para comprobar la jerarquía de herencia de la clase motor
 Se definen expectativas para comprobar que la herencia de la clase motor es correcta
 
+## Jerarquía de herencia de la clase Datos
+Se definen expectativas para comprobar la jerarquía de herencia de la clase Datos
+
