@@ -50,3 +50,6 @@ instanciado de la clase vehiculo. Se impelenta un método count que devuelve dic
 ### Expectativas para los operadores de comparación
 En la clase Vehiculo se incluye el módulo Comparable con el que se podrá sobrecargar los operadores de comparación.
 En este caso para comparar los vehiculos se hará mediante su volumen (ancho * alto * largo)
+
+### Expectativas para comprobar la herencia de la clase vehiculo
+Se definen expectativas para comprobar que la herencia de la clase vehiculo es correcta
