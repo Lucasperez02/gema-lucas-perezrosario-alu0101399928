@@ -115,6 +115,14 @@ RSpec.describe GemaAparcamiento do
     expect(@veh1 < @veh2).to eq(true)
     expect(@veh1 == @veh3).to eq(true)
     end
+
+    it "Herencias de vehiculo" do
+      expect(@veh1.instance_of? GemaAparcamiento::Vehiculo).to eq(true)
+      expect(@veh1.is_a? Object).to eq(true)
+      expect(@veh1.is_a? BasicObject).to eq(true)
+      expect(@veh1.instance_of? Numeric).to eq(false)
+      expect(@veh1.instance_of? String).to eq(false)
+    end
   
   end
 
