@@ -53,6 +53,14 @@ RSpec.describe GemaAparcamiento do
       expect(@apar1.to_s()).to eq("Aparcamiento con accesibilidad 3, seguridad 8 e id 23414. Establecimiento en Carrefour, Mixto y del tipo coches. Plazas totales 200 y 120 ocupadas")
       expect(@apar2.to_s()).to eq("Aparcamiento con accesibilidad 4, seguridad 10 e id 43961. Establecimiento en HiperDino, Cubierto y del tipo motos. Plazas totales 20 y 5 ocupadas")
     end
+
+    it "Jerarquía de herencia de Datos" do
+      expect(@apar1.instance_of? GemaAparcamiento::Datos).to eq(true)
+      expect(@apar1.is_a? Object).to eq(true)
+      expect(@apar1.is_a? BasicObject).to eq(true)
+      expect(@apar1.instance_of? GemaAparcamiento::Vehiculo).to eq(false)
+      expect(@apar1.instance_of? GemaAparcamiento::Motor).to eq(false)      
+    end
   end
 
   describe GemaAparcamiento::Funcionalidades do
