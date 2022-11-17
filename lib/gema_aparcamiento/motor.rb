@@ -28,6 +28,12 @@ module GemaAparcamiento
             s <<". Vehiculo a motor de #{@n_ruedas} ruedas, #{@n_plazas} plazas, potencia de motor de #{@potencia_motor} cc y máximo #{@vel_maxima} km hora"
             s
         end
+
+        def <=>(other)
+            return nil unless other.instance_of?GemaAparcamiento::Motor
+                
+            self.n_plazas <=> other.n_plazas
+        end        
     end
 
 end

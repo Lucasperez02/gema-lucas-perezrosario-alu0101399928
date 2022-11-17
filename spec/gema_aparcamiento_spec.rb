@@ -156,7 +156,7 @@ RSpec.describe GemaAparcamiento do
       expect(@motor3.to_s()).to eq("Vehiculo con id 96128, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 2 ruedas, 1 plazas, potencia de motor de 1900 cc y máximo 180 km hora")
     end
 
-    it "Probando los operadores de comparación de Motor" do
+    it "Probando los operadores de comparación de Motor" do 
       expect(@motor1 == @motor4).to eq(true)
       expect(@motor1 > @motor2).to eq(true)
       expect(@motor3 < @motor2).to eq(true)
