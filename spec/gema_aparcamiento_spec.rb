@@ -8,6 +8,15 @@ RSpec.describe GemaAparcamiento do
   # it "does something useful" do
   #   expect(false).to eq(true)
   # end
+  it "Jerarquía de herencia de Aparcamiento" do
+    expect(GemaAparcamiento.is_a? Object).to eq(true)
+    expect(GemaAparcamiento.is_a? BasicObject).to eq(true)
+    expect(GemaAparcamiento.is_a? Module).to eq(true)
+    expect(GemaAparcamiento.is_a? GemaAparcamiento::Vehiculo).to eq(false)
+    expect(GemaAparcamiento.is_a? GemaAparcamiento::Motor).to eq(false)
+    expect(GemaAparcamiento.is_a? Class).to eq(false)      
+  end
+
   describe GemaAparcamiento::Datos do
     before (:all) do
       @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120)
