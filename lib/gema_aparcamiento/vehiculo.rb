@@ -1,9 +1,10 @@
 module GemaAparcamiento
-
+    # = Clase Vehiculo
     class Vehiculo
         include Comparable
         attr_reader :id, :altura, :anchura, :largo, :peso
-        def initialize(id, altura, anchura, largo, peso)
+        # == Initialize de la clase vehiculo
+        def initialize(id, altura, anchura, largo, peso) # :yields: id, altura, anchura, largo, peso
             #Excepciones para id
             if !(id.is_a? Integer) or id < 0
                 raise ArgumentError.new("El valor del id debe ser un int positivo")
@@ -35,16 +36,21 @@ module GemaAparcamiento
             end
 
         end
+        # Este método initialize de la clase *Vehiculo* recibe los parámetros que serán *variables de instancia* de la clase
+        # En la implementación del método hay condicionales para comprobar que los parámetros que se pasan son correctos.
+        # En otro caso se lanzarán excepciones.
 
+
+        # == Método para mostrar los datos del vehiculo por pantalla
         def to_s()
             "Vehiculo con id #{@id}, altura #{@altura} m, anchura #{@anchura} m, largo #{@largo} m y un peso de #{@peso} kg"
         end
-
+        # == Método que se usará para obtener la variable de clase
         def self.count()
             @@numero_vehiculos
         end
-
-        def <=>(other)
+        # == Sobrecrga de los operadores de comparación
+        def <=>(other) # :yields: other
             return nil unless other.instance_of?GemaAparcamiento::Vehiculo
                 
             self.anchura * self.altura * self.largo <=> other.anchura * other.altura * other.largo
