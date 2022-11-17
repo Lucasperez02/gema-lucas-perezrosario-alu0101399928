@@ -22,6 +22,12 @@ module GemaAparcamiento
             @potencia_motor, @vel_maxima = potencia_motor, vel_maxima
         end
 
+        def to_s
+            s = ""
+            s << super.to_s
+            s <<". Vehiculo a motor de #{@n_ruedas} ruedas, #{@n_plazas} plazas, potencia de motor de #{@potencia_motor} cc y máximo #{@vel_maxima} km hora"
+            s
+        end
     end
 
 end

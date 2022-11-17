@@ -149,10 +149,10 @@ RSpec.describe GemaAparcamiento do
       expect(GemaAparcamiento::Motor.count()).to eq(9)
     end
 
-    it "Probado to_s de vehiculo a motor" do 
+    it "Probado to_s de vehiculo a motor" do
       expect(@motor1.to_s()).to eq("Vehiculo con id 12334, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 4 ruedas, 5 plazas, potencia de motor de 1700 cc y máximo 100 km hora")
-      expect(@motor1.to_s()).to eq("Vehiculo con id 54321, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 4 ruedas, 2 plazas, potencia de motor de 2000 cc y máximo 180 km hora")
-      expect(@motor1.to_s()).to eq("Vehiculo con id 96128, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 2 ruedas, 1 plazas, potencia de motor de 1900 cc y máximo 180 km hora")
+      expect(@motor2.to_s()).to eq("Vehiculo con id 54321, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 4 ruedas, 2 plazas, potencia de motor de 2000 cc y máximo 180 km hora")
+      expect(@motor3.to_s()).to eq("Vehiculo con id 96128, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 2 ruedas, 1 plazas, potencia de motor de 1900 cc y máximo 180 km hora")
     end
 
   end
