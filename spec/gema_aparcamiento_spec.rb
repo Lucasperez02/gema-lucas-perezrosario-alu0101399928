@@ -130,14 +130,15 @@ RSpec.describe GemaAparcamiento do
 
     it "Probando el initialize de vehiculo a motor" do
       expect(GemaAparcamiento::Motor.new(4, 5, 1900, 120)).not_to eq(nil)
-      expect(GemaAparcamiento::Motor.new(-4, 5, 1900, 120)).to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
-      expect(GemaAparcamiento::Motor.new("4", 5, 1900, 120)).to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
-      expect(GemaAparcamiento::Motor.new(4, -5, 1900, 120)).to raise_error(ArgumentError) #El n_plazas debe ser un int positivo
-      expect(GemaAparcamiento::Motor.new(4, "5", 1900, 120)).to raise_error(ArgumentError) #El n_plazas debe ser un int positivo
-      expect(GemaAparcamiento::Motor.new(4, 5, -1900, 120)).to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
-      expect(GemaAparcamiento::Motor.new(4, 5, "1900", 120)).to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
-      expect(GemaAparcamiento::Motor.new(4, 5, 1900, -120)).to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
-      expect(GemaAparcamiento::Motor.new(4, 5, 1900, "120")).to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new(-4, 5, 1900, 120)}.to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new("4", 5, 1900, 120)}.to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new(4, -5, 1900, 120)}.to raise_error(ArgumentError) #El n_plazas debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new(4, "5", 1900, 120)}.to raise_error(ArgumentError) #El n_plazas debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new(4, 5, -1900, 120)}.to raise_error(ArgumentError) #La potencia_motor debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new(4, 5, "1900", 120)}.to raise_error(ArgumentError) #La potencia_motor debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new(4, 5, 1900, -120)}.to raise_error(ArgumentError) #La vel_maxima debe ser un int positivo
+      expect{GemaAparcamiento::Motor.new(4, 5, 1900, "120")}.to raise_error(ArgumentError) #La vel_maxima debe ser un int positivo
+      
     end
 
   end
