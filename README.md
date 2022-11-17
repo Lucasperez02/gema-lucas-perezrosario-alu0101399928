@@ -53,3 +53,27 @@ En este caso para comparar los vehiculos se hará mediante su volumen (ancho * a
 
 ### Expectativas para comprobar la herencia de la clase vehiculo
 Se definen expectativas para comprobar que la herencia de la clase vehiculo es correcta
+
+## Expectativas de la clase motor
+
+La clase motor es una clase que hereda de la clase vehiculo.
+
+### Expectativas del initialize e implementación
+Se han definido las expectativas para el initialize de la clase motor y se ha implementado el propio método en la clase.
+En el initialize se tienes condicionales comprbando que los datos que se pasan para el vehiculo a motor son correctos. Si no lo hacen
+se lanzan excepciones. Además, en este initialize se usa el initialize de la clase padre vehiculo gracias a la herencia.
+
+### Expectativas del to_s e implementación
+Esta función to_s servirá para mostrar la información del vehiculo de motor como una string
+
+### Expectativas para la variable de clase
+La variable de clase que se había declarado en la clase vehiculo también debe aumentar cuando se instancia un objeto de la clase motor
+ya que esta clase hereda de la clase vehiculo y hace uso del initialize de vehiculo como hemos dicho
+
+### Expectativas para los operadores de comparación
+En la clase Motor se incluye el módulo Comparable con el que se podrá sobrecargar los operadores de comparación.
+En este caso para comparar los vehiculos de motor se hará mediante su n_plazas
+
+### Expectativas para comprobar la jerarquía de herencia de la clase motor
+Se definen expectativas para comprobar que la herencia de la clase motor es correcta
+
