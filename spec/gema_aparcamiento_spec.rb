@@ -162,5 +162,14 @@ RSpec.describe GemaAparcamiento do
       expect(@motor3 < @motor2).to eq(true)
     end
 
+    it "Herencias de motor" do
+      expect(@motor1.instance_of? GemaAparcamiento::Motor).to eq(true)
+      expect(@motor1.is_a? GemaAparcamiento::Vehiculo).to eq(true)
+      expect(@motor1.is_a? Object).to eq(true)
+      expect(@motor1.is_a? BasicObject).to eq(true)
+      expect(@motor1.instance_of? Numeric).to eq(false)
+      expect(@motor1.instance_of? String).to eq(false)
+    end
+
   end
 end
