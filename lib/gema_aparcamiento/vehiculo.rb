@@ -49,6 +49,8 @@ module GemaAparcamiento
                 
             self.anchura * self.altura * self.largo <=> other.anchura * other.altura * other.largo
         end
+
+        ORIGIN = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
     end
 
 end
