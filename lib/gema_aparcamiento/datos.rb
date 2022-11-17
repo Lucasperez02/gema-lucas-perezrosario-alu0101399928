@@ -1,9 +1,11 @@
 module GemaAparcamiento
 
+  # = Clase Datos
   class Datos
     attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :plazas_ocupadas
-    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas)
-      # == Excepciones para accesibilidad
+    # == Initialize de la clase Datos
+    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas) # :yields: accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas
+      #Excepciones para accesibilidad
       if !(accesibilidad.is_a? Integer) or accesibilidad < 0
         raise ArgumentError.new("El valor de accesibilidad debe ser un int positivo")
       end
@@ -57,16 +59,19 @@ module GemaAparcamiento
         when tipo_aparcamiento == "bicicletas" then @BICICLETA = [2, 1.5, 1.5]
       end
     end
- 
-    # = Método para obtener el número de plazas totales
-    def get_plazas_totales()
+    # Este método initialize de la clase *Datos* recibe los parámetros que serán *variables de instancia* de la clase
+    # En la implementación del método hay condicionales para comprobar que los parámetros que se pasan son correctos.
+    # En otro caso se lanzarán excepciones.
+
+    # == Método para obtener el número de plazas totales
+    def get_plazas_totales() # :yields: plazas
       @plazas
     end
-    # = Método para obtener el número de plazas libres
-    def plazas_libres()
+    # == Método para obtener el número de plazas libres
+    def plazas_libres() # :yields: plazas, plazas_ocupadas
       @plazas - @plazas_ocupadas
     end
-    # = Método para mostrar los datos del aparcamiento por pantalla
+    # == Método para mostrar los datos del aparcamiento por pantalla
     def to_s()
       "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas} y #{@plazas_ocupadas} ocupadas"
     end  
