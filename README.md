@@ -80,3 +80,6 @@ Se definen expectativas para comprobar que la herencia de la clase motor es corr
 ## Jerarquía de herencia de la clase Datos
 Se definen expectativas para comprobar la jerarquía de herencia de la clase Datos
 
+## Jerarquía de herencia del módulo GemaAparcamiento
+Se definen expectativas para comprobar la jerarquía de herencia del módulo GemaAparcamiento
+
