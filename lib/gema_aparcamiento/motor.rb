@@ -3,8 +3,8 @@ module GemaAparcamiento
     class Motor < GemaAparcamiento::Vehiculo
         include Comparable
         attr_reader :n_ruedas, :n_plazas, :potencia_motor, :vel_maxima
-        def initialize(n_ruedas, n_plazas, potencia_motor, vel_maxima)
-            
+        def initialize(id, altura, anchura, largo, peso,n_ruedas, n_plazas, potencia_motor, vel_maxima)
+
             if !(n_ruedas.is_a? Integer) or n_ruedas < 0
                 raise ArgumentError.new("El n_ruedas debe ser un int positivo")
             end
@@ -17,7 +17,7 @@ module GemaAparcamiento
             if !(vel_maxima.is_a? Integer) or vel_maxima < 0
                 raise ArgumentError.new("La vel_maxima debe ser un int positivo")
             end
-
+            super(id, altura, anchura, largo, peso)
             @n_ruedas, @n_plazas = n_ruedas, n_plazas
             @potencia_motor, @vel_maxima = potencia_motor, vel_maxima
         end

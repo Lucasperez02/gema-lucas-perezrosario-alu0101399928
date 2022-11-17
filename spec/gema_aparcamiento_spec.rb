@@ -128,9 +128,9 @@ RSpec.describe GemaAparcamiento do
 
   describe GemaAparcamiento::Motor do
     before (:all) do
-      @motor1 = GemaAparcamiento::Motor(4,5,1700,100)
-      @motor2 = GemaAparcamiento::Motor(4,2,2000,180)
-      @motor3 = GemaAparcamiento::Motor(2,1,1900,180)
+      @motor1 = GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4,5,1700,100)
+      @motor2 = GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4,2,2000,180)
+      @motor3 = GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,2,1,1900,180)
     end
 
     it "Probando el initialize de vehiculo a motor" do
@@ -143,7 +143,10 @@ RSpec.describe GemaAparcamiento do
       expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, 5, "1900", 120)}.to raise_error(ArgumentError) #La potencia_motor debe ser un int positivo
       expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, 5, 1900, -120)}.to raise_error(ArgumentError) #La vel_maxima debe ser un int positivo
       expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, 5, 1900, "120")}.to raise_error(ArgumentError) #La vel_maxima debe ser un int positivo
+    end
 
+    it "Probando la variable de clase de vehiculo" do
+      expect(GemaAparcamiento::Motor.count()).to eq(9)
     end
 
     it "Probado to_s de vehiculo a motor" do 
