@@ -2,7 +2,7 @@ module GemaAparcamiento
 
   class Datos
     attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :plazas_ocupadas
-    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas)
+    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas, distancia, plazas_minusvalidos, precio_x_minuto, cjto_vehiculos)
       #Excepciones para accesibilidad
       if !(accesibilidad.is_a? Integer) or accesibilidad < 0
         raise ArgumentError.new("El valor de accesibilidad debe ser un int positivo")
@@ -38,16 +38,36 @@ module GemaAparcamiento
         raise ArgumentError.new("El valor de plazas debe ser un int positivo")
       end     
       #Excepciones para plazas_ocupadas
-      if !(plazas_ocupadas.is_a? Integer) or plazas_ocupadas < 0
+      if !(plazas_ocupadas.is_a? Integer) or plazas_ocupadas <= 0
         raise ArgumentError.new("El valor de plazas_ocupadas debe ser un int positivo")
       end
       if plazas_ocupadas > plazas
         raise ArgumentError.new("El númeor de plazas ocupadas debe ser menor que las plazas totales")
       end
+      #Excepciones para plazas_minusvalidos
+      if !(plazas_minusvalidos.is_a? Integer) or plazas_minusvalidos <= 0
+        raise ArgumentError.new("El valor de plazas_minusvalidos debe ser un int positivo")
+      end
+      #Excepciones para distancia
+      if !(distancia.is_a? Numeric) or distancia < 0
+        raise ArgumentError.new("El valor de distancia debe ser un numeric positivo")
+      end
+      #Excepciones para precio_x_minuto
+      if !(precio_x_minuto.is_a? Numeric) or precio_x_minuto < 0
+        raise ArgumentError.new("El valor de precio_x_minuto debe ser un numeric positivo")
+      end
+      #Excepciones para cjto_vehiculos
+      if !(cjto_vehiculos[0].is_a? GemaAparcamiento::Vehiculo) or !(cjto_vehiculos.is_a? Array)
+        raise ArgumentError.new("El cjto_vehiculos debe ser un array de vehiculos")
+      end      
+      #Excepciones para accesibilidad              
       #Inicializando las valiables de instancia
       @accesibilidad, @seguridad, @id = accesibilidad, seguridad, id
       @nombre_comercial, @descripcion, @tipo_aparcamiento = nombre_comercial, descripcion, tipo_aparcamiento
       @plazas, @plazas_ocupadas = plazas, plazas_ocupadas
+      @plazas_minusvalidos = plazas_minusvalidos
+      @distancia, @precio_x_minuto = distancia, precio_x_minuto
+      @cjto_vehiculos = cjto_vehiculos
 
       #Constantes con las medidas de los aparcamientos según el tipo de aparcamiento
       case tipo_aparcamiento

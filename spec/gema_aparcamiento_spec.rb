@@ -16,36 +16,38 @@ RSpec.describe GemaAparcamiento do
     expect(GemaAparcamiento.is_a? GemaAparcamiento::Motor).to eq(false)
     expect(GemaAparcamiento.is_a? Class).to eq(false)      
   end
-
+ 
   describe GemaAparcamiento::Datos do
     before (:all) do
-      @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120)
-      @apar2 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 5)
+      @veh1_1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
+      @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)      
+      @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120, 2, 5, 0.5, [@veh1_1, @veh2_2])
+      @apar2 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 5, 2, 5, 0.5, [@veh1_1, @veh2_2])
     end
 
     it "Instancia de un aparcamiento" do
-      expect(GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27)).not_to eq(nil)
-      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27)}.to raise_error(ArgumentError) #El valor de accesibilidad debe ser un int positivo
-      expect{GemaAparcamiento::Datos.new(7, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27)}.to raise_error(ArgumentError) #El valor de accesibilidad debe estar entre 1 - 5
+      expect(GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])).not_to eq(nil)
+      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de accesibilidad debe ser un int positivo
+      expect{GemaAparcamiento::Datos.new(7, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de accesibilidad debe estar entre 1 - 5
 
-      expect{GemaAparcamiento::Datos.new(1, -1, 12345, "Mercadona", "Mixto", "coches", 30, 27)}.to raise_error(ArgumentError) #El valor de seguridad debe ser un int positivo
-      expect{GemaAparcamiento::Datos.new(1, 11, 12345, "Mercadona", "Mixto", "coches", 30, 27)}.to raise_error(ArgumentError) #El valor de seguridad debe estar entre 1 - 10)
+      expect{GemaAparcamiento::Datos.new(1, -1, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de seguridad debe ser un int positivo
+      expect{GemaAparcamiento::Datos.new(1, 11, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de seguridad debe estar entre 1 - 10)
 
-      expect{GemaAparcamiento::Datos.new(1, 10, -12345, "Mercadona", "Mixto", "coches", 30, 27)}.to raise_error(ArgumentError) #El valor de id debe ser un int positivo   
-      expect{GemaAparcamiento::Datos.new(1, 10, "12345", "Mercadona", "Mixto", "coches", 30, 27)}.to raise_error(ArgumentError) #El valor de id debe ser un int positivo
+      expect{GemaAparcamiento::Datos.new(1, 10, -12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de id debe ser un int positivo   
+      expect{GemaAparcamiento::Datos.new(1, 10, "12345", "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de id debe ser un int positivo
 
-      expect{GemaAparcamiento::Datos.new(1, 10, 12345, 4, "Mixto", "Coches", 30, 27)}.to raise_error(ArgumentError) #El valor de nombre_comercial debe ser una string
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, 4, "Mixto", "Coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de nombre_comercial debe ser una string
 
-      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Otro", "coches", 30, 27)}.to raise_error(ArgumentError) #El valor de descripcion debe ser un string (Mixto, Cubierto, Aire libre)
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Otro", "coches", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de descripcion debe ser un string (Mixto, Cubierto, Aire libre)
 
-      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "camiones", 30, 27)}.to raise_error(ArgumentError) #El valor de tipo_aparcamiento debe ser un string (Mixto, )
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "camiones", 30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de tipo_aparcamiento debe ser un string (Mixto, )
 
-      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", -30, 27)}.to raise_error(ArgumentError) #El valor de plazas debe ser un int > 0
-      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", "20", 27)}.to raise_error(ArgumentError) #El valor de plazas debe ser un int > 0
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", -30, 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas debe ser un int > 0
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", "20", 27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas debe ser un int > 0
 
-      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, -27)}.to raise_error(ArgumentError) #El valor de plazas_ocupadas debe ser un int > 0
-      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, "20")}.to raise_error(ArgumentError) #El valor de plazas_ocupadas debe ser un int > 0
-      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 45)}.to raise_error(ArgumentError) #El numeor de plazas ocupadas debe ser < numero de plazas
+      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, -27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas_ocupadas debe ser un int > 0
+      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, "20", 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas_ocupadas debe ser un int > 0
+      expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 45, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El numeor de plazas ocupadas debe ser < numero de plazas
     end
 
     it "Probando la función para obtener el número de plazas del aparcamiento" do
@@ -74,8 +76,10 @@ RSpec.describe GemaAparcamiento do
 
   describe GemaAparcamiento::Funcionalidades do
     before (:all) do
-      @aparcamiento_libre = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120)
-      @aparcamiento_lleno = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 20)
+      @veh1_1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
+      @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)      
+      @aparcamiento_libre = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 120, 2, 5, 0.5, [@veh1_1, @veh2_2])
+      @aparcamiento_lleno = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 20, 2, 5, 0.5, [@veh1_1, @veh2_2])
     end
     it "Probando la constante LLENO" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
@@ -117,7 +121,7 @@ RSpec.describe GemaAparcamiento do
       
     end
     it "Probando el variable de clase numero_vehiculo" do
-      expect(GemaAparcamiento::Vehiculo.count()).to eq(5)
+      expect(GemaAparcamiento::Vehiculo.count()).to eq(9)
     end
 
     it "Probando función to_s" do
@@ -164,7 +168,7 @@ RSpec.describe GemaAparcamiento do
     end
 
     it "Probando la variable de clase de vehiculo" do
-      expect(GemaAparcamiento::Motor.count()).to eq(10)
+      expect(GemaAparcamiento::Motor.count()).to eq(14)
     end
 
     it "Probado to_s de vehiculo a motor" do
