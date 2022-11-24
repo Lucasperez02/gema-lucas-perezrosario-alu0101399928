@@ -59,7 +59,10 @@ module GemaAparcamiento
       #Excepciones para cjto_vehiculos
       if !(cjto_vehiculos[0].is_a? GemaAparcamiento::Vehiculo) or !(cjto_vehiculos.is_a? Array)
         raise ArgumentError.new("El cjto_vehiculos debe ser un array de vehiculos")
-      end      
+      end
+      if (plazas_minusvalidos > plazas) 
+        raise ArgumentError.new("Las plazas de minusválidos deben ser < que el n_plazas totales")
+      end
       #Excepciones para accesibilidad              
       #Inicializando las valiables de instancia
       @accesibilidad, @seguridad, @id = accesibilidad, seguridad, id

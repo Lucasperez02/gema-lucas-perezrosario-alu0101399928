@@ -48,7 +48,21 @@ RSpec.describe GemaAparcamiento do
       expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, -27, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas_ocupadas debe ser un int > 0
       expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, "20", 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas_ocupadas debe ser un int > 0
       expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 45, 2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El numeor de plazas ocupadas debe ser < numero de plazas
+      
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, -2, 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de distancia debe ser un numeric positivo
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, "2", 5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de distancia debe ser un numeric positivo
+
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, -5, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas_minusvalidos debe ser un int positivo
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, "5", 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de plazas_minusvalidos debe ser un int positivo
+
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, -0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de precio_x_minuto debe ser un numeric positivo
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, "0.5", [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de precio_x_minuto debe ser un numeric positivo
+
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, 3)}.to raise_error(ArgumentError) #El cjto_vehiculos debe ser un array de vehiculos
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 5, 0.5, [1, @veh2_2])}.to raise_error(ArgumentError) #El cjto_vehiculos debe ser un array de vehiculos
+      expect{GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 27, 2, 32, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #Las plazas de minusválidos deben ser < que el n_plazas totales
     end
+
 
     it "Probando la función para obtener el número de plazas del aparcamiento" do
       expect(@apar1.get_plazas_totales()).to eq(200)
