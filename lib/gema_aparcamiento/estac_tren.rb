@@ -18,7 +18,7 @@ module GemaAparcamiento
         def to_s
             s = ""
             s << super.to_s
-            s << ". Corresponde a un estacionamiento de tren que tiene #{@plazas_larga_estancia} plazas de larga estancia."
+            s << " Corresponde a un estacionamiento de tren que tiene #{@plazas_larga_estancia} plazas de larga estancia."
         end
         
     end
