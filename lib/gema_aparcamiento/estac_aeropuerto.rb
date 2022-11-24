@@ -12,7 +12,12 @@ module GemaAparcamiento
             super(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas, distancia, plazas_minusvalidos, precio_x_minuto, cjto_vehiculos)
             @n_plantas = n_plantas
         end
-        
+
+        def to_s
+            s = ""
+            s << super.to_s
+            s << ". Corresponde a un estacionamiento de aeropuerto que tiene #{@n_plantas} plantas."
+        end        
     end
 
 end
