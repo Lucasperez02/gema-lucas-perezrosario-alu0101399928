@@ -1,3 +1,19 @@
+# Práctica 9: POO. Polimorfismo (Lucas Pérez Rosario)
+
+Esta práctica se centrará en el uso de funciones polimórficas y también en el uso de los módulos enumerable y comparable.
+
+## Cambio de expectativas en el initialize de Datos
+Se han añadido nuevas expectativas para el initialize de la clase Datos ya que la clase tiene variables
+de instancia nuevas que se han añadido para la práctica.
+
+## Creación de las expectativas y clases para EstacionTren y EstacionAeropuerto
+Para la práctica se añaden dos nuevas clases que heredan de la clase GemaAparcamiento::Datos, estas son las clases
+EstacionTren y EstacionAeropuerto. Se definen las expectativas para comprobar el initialize de estas clases
+
+## Expectativas para probar el to_s de las clases EstacionTren y EstacionAeropuerto
+Se definen expectativas para probar la función to_s que muestra la información del estacionamiento como una string.
+Esta función hace uso de la función to_s de GemaAparcamiento::Datos, la clase padre.
+
 # Práctica 7: POO. GEMA. (Lucas Pérez Rosario)
 
 Esta práctica se centrará en la creación y desarrollo de una gema mediante el uso del bundler.
