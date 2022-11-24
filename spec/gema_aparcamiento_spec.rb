@@ -75,13 +75,18 @@ RSpec.describe GemaAparcamiento do
     end
     
     it "Probando el get_plazas_ocupadas" do
-      
-
-    end
+      expect(@apar1.get_plazas_ocupadas).to eq(6)     
+    end 
 
     it "Probando función to_s" do
       expect(@apar1.to_s()).to eq("Aparcamiento con accesibilidad 3, seguridad 8 e id 23414. Establecimiento en Carrefour, Mixto y del tipo coches. Plazas totales 200.Estacionamiento a 2 km del centro de la ciudad, tiene 5 plazas para minusválidos. Precio por minuto 0.5 € y tiene 6 vehiculos")
       expect(@apar2.to_s()).to eq("Aparcamiento con accesibilidad 4, seguridad 10 e id 43961. Establecimiento en HiperDino, Cubierto y del tipo motos. Plazas totales 20.Estacionamiento a 2 km del centro de la ciudad, tiene 5 plazas para minusválidos. Precio por minuto 0.5 € y tiene 4 vehiculos")
+    end
+
+    it "Probando la función intertar_vehiculo" do
+      expect(@apar1.get_plazas_ocupadas).to eq(6)     
+      @apar1.insertar_vehiculo(@veh1_1)
+      expect(@apar1.get_plazas_ocupadas).to eq(7)     
     end
 
     it "Jerarquía de herencia de Datos" do

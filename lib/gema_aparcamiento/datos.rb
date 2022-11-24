@@ -91,7 +91,13 @@ module GemaAparcamiento
     #Método para mostrar los datos del aparcamiento por pantalla
     def to_s()
       "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas}.Estacionamiento a #{@distancia} km del centro de la ciudad, tiene #{@plazas_minusvalidos} plazas para minusválidos. Precio por minuto #{@precio_x_minuto} € y tiene #{@cjto_vehiculos.size} vehiculos"
-    end  
+    end
+    
+    #Método para aparcar un vehiculo
+    #Método para calcular la duración
+
+
+    #Método para calcular el importe a pagar
 
   end
 
