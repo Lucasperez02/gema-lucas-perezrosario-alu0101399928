@@ -1,6 +1,8 @@
 module GemaAparcamiento
 
     class EstacTren < GemaAparcamiento::Datos
+        include Comparable
+        include Enumerable
         attr_reader :plazas_larga_estancia  
         def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas, distancia, plazas_minusvalidos, precio_x_minuto, cjto_vehiculos, plazas_larga_estancia)
             if !(plazas_larga_estancia.is_a? Integer) or plazas_larga_estancia < 0

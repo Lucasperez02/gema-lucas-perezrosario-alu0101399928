@@ -2,6 +2,7 @@ module GemaAparcamiento
 
     class Vehiculo
         include Comparable
+        include Enumerable
         attr_reader :id, :altura, :anchura, :largo, :peso
         def initialize(id, altura, anchura, largo, peso)
             #Excepciones para id
