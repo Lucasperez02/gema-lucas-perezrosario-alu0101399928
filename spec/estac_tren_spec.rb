@@ -19,6 +19,10 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_tren1.plazas_larga_estancia).to eq(8)
             expect(@estac_tren1.cjto_vehiculos).to eq([@veh1_1, @veh2_2])
         end
+        it "Expectativas del to_s" do
+            expect(@estac_tren1.to_s()).to eq("Aparcamiento con accesibilidad 1, seguridad 10 e id 12345. Establecimiento en Mercadona, Mixto y del tipo coches. Plazas totales 30 y 27 ocupadas.Estacionamiento a 2 km del centro de la ciudad, tiene 5 plazas para minusválidos. Precio por minuto 0.5 € y tiene 2 vehiculos. Corresponde a un estacionamiento de tren que tiene 8 plazas de larga estancia.")
+
+        end
     end
 
 
