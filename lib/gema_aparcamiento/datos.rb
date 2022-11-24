@@ -1,7 +1,7 @@
 module GemaAparcamiento
 
   class Datos
-    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :plazas_ocupadas
+    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :plazas_ocupadas, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos
     def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, plazas_ocupadas, distancia, plazas_minusvalidos, precio_x_minuto, cjto_vehiculos)
       #Excepciones para accesibilidad
       if !(accesibilidad.is_a? Integer) or accesibilidad < 0
@@ -48,6 +48,9 @@ module GemaAparcamiento
       if !(plazas_minusvalidos.is_a? Integer) or plazas_minusvalidos <= 0
         raise ArgumentError.new("El valor de plazas_minusvalidos debe ser un int positivo")
       end
+      if (plazas_minusvalidos > plazas) 
+        raise ArgumentError.new("Las plazas de minusválidos deben ser < que el n_plazas totales")
+      end
       #Excepciones para distancia
       if !(distancia.is_a? Numeric) or distancia < 0
         raise ArgumentError.new("El valor de distancia debe ser un numeric positivo")
@@ -59,9 +62,6 @@ module GemaAparcamiento
       #Excepciones para cjto_vehiculos
       if !(cjto_vehiculos[0].is_a? GemaAparcamiento::Vehiculo) or !(cjto_vehiculos.is_a? Array)
         raise ArgumentError.new("El cjto_vehiculos debe ser un array de vehiculos")
-      end
-      if (plazas_minusvalidos > plazas) 
-        raise ArgumentError.new("Las plazas de minusválidos deben ser < que el n_plazas totales")
       end
       #Excepciones para accesibilidad              
       #Inicializando las valiables de instancia
