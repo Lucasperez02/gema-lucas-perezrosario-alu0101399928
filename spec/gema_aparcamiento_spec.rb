@@ -23,6 +23,7 @@ RSpec.describe GemaAparcamiento do
       @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)      
       @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2])
       @apar2 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+      @apar3 = GemaAparcamiento::Datos.new(3, 10, 13452,"Carrefour", "Mixto", "coches", 4, 2, 1, 0.5,[@veh1_1, @veh2_2, @veh1_1, @veh2_2])
     end
 
     it "Instancia de un aparcamiento" do
@@ -86,7 +87,9 @@ RSpec.describe GemaAparcamiento do
     it "Probando la función intertar_vehiculo" do
       expect(@apar1.get_plazas_ocupadas).to eq(6)     
       @apar1.insertar_vehiculo(@veh1_1)
-      expect(@apar1.get_plazas_ocupadas).to eq(7)     
+      expect(@apar1.get_plazas_ocupadas).to eq(7)
+      expect{@apar1.insertar_vehiculo(1)}.to raise_error(ArgumentError) #El objeto a insertar debe ser un vehiculo
+      expect{@apar3.insertar_vehiculo(@veh2_2)}.to raise_error(ArgumentError) #No se pueden insertar más vehiculos, estacionamiento lleno
     end
 
     it "Jerarquía de herencia de Datos" do
@@ -107,7 +110,7 @@ RSpec.describe GemaAparcamiento do
     end
     it "Probando la constante LLENO" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
-    end
+    end 
  
     it "Probando la constante LIBRE" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LIBRE).to eq ("Libre")

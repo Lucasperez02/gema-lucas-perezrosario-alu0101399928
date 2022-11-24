@@ -30,7 +30,7 @@ module GemaAparcamiento
         raise ArgumentError.new("El valor de descripcion debe ser un string (Mixto, Cubierto, Aire libre)")
       end
       #Excepciones para tipo_aparcamiento
-      if !(tipo_aparcamiento.is_a? String) or (not(tipo_aparcamiento == "autobuses") and !(tipo_aparcamiento == "coches") and !(tipo_aparcamiento == "motos") and !(tipo_aparcamiento == "bicicletas"))
+      if !(tipo_aparcamiento.is_a? String) or (not(tipo_aparcamiento == "autobuses") and !(tipo_aparcamiento == "coches") and !(tipo_aparcamiento == "motos") and !(tipo_aparcamiento == "bicicletas") and !(tipo_aparcamiento == "minusvalido"))
         raise ArgumentError.new("El tipo_aparcamiento debe ser un string (autobuses, coches, motos, bicicletas)")
       end
       #Excepciones para plazas
@@ -74,6 +74,7 @@ module GemaAparcamiento
         when tipo_aparcamiento == "coches" then @COCHE = [2, 3.5, 2]
         when tipo_aparcamiento == "motos" then @MOTO = [2, 2, 2]
         when tipo_aparcamiento == "bicicletas" then @BICICLETA = [2, 1.5, 1.5]
+        when tipo_aparcamiento == "minusvalido" then @MINUSVALIDO = [5, 2, 5, 1.5]
       end
     end
 
@@ -94,6 +95,18 @@ module GemaAparcamiento
     end
     
     #Método para aparcar un vehiculo
+    def insertar_vehiculo(other)
+      if !(other.is_a?GemaAparcamiento::Vehiculo)
+        raise ArgumentError.new("El objeto a insertar debe ser un vehiculo")
+
+      elsif GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(self) == GemaAparcamiento::Funcionalidades::APAR_LLENO
+        raise ArgumentError.new("No se pueden insertar más vehiculos, estacionamiento lleno")
+      end
+
+      self.cjto_vehiculos.push(other)
+    end
+
+    
     #Método para calcular la duración
 
 
