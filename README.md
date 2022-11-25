@@ -1,3 +1,47 @@
+# Práctica 9: POO. Polimorfismo (Lucas Pérez Rosario)
+
+Esta práctica se centrará en el uso de funciones polimórficas y también en el uso de los módulos enumerable y comparable.
+
+## Cambio de expectativas en el initialize de Datos
+Se han añadido nuevas expectativas para el initialize de la clase Datos ya que la clase tiene variables
+de instancia nuevas que se han añadido para la práctica.
+
+## Creación de las expectativas y clases para EstacionTren y EstacionAeropuerto
+Para la práctica se añaden dos nuevas clases que heredan de la clase GemaAparcamiento::Datos, estas son las clases
+EstacionTren y EstacionAeropuerto. Se definen las expectativas para comprobar el initialize de estas clases
+
+## Expectativas para probar el to_s de las clases EstacionTren y EstacionAeropuerto
+Se definen expectativas para probar la función to_s que muestra la información del estacionamiento como una string.
+Esta función hace uso de la función to_s de GemaAparcamiento::Datos, la clase padre.
+
+## Expectativas para probar la función para insertar un vehiculo
+Se definen las expectativas para probar el método con el que se podrá insertar un vehiculo en un estacionamiento.
+A la función se le pasa como parámetro un vehiculo y este se inserta en el conjunto de vehiculos que tiene el estacionamiento.
+
+## Expectativas para probar el método de calcluar la duración de un vehiculo en un estacionamiento
+Para esta función se pasan el vehiculo al que le calculas su duración en el estacionamietno, su hora de entrada y de salida
+En las expectativas se comprueba que se lanzan las diferentes excepciones del método y también que el método funciona correctamente
+
+## Expectativas adicionales (Enumerable, Comparable y Herencia)
+En las clases EstacTren y EstacAeropuerto se han incluido los módulos enumerable y comparable y se sobreescrito funciones
+Además, en ambas clases se han añadido expectativas para demostrar la jerarquía de herencia
+
+## Expectativas para probar el método de calcular el importe a pagar según una duración
+Esta función se encarga de calcular el importe que se pagará en un estacionamiento dependiendo del tiempo que estemos en él
+
+# Funcionalidades nuevas
+## Determinar si un aparcamiento cumple con el número de plazas de minusválidos
+En esta función se comprueba que un aparcamiento tiene un número de plazas válido, superior a 1/40 cuando el número de plazas
+supera las 40
+
+## Determinar el número de plazas de minnusválidos libes
+Devuelve el número de plazas libres para minusválidos que hay en el aparcamiento
+
+## Determina el número de vehiculos estacaionados en un aparcamiento
+Devuelve el número de vehiculos estacionados. Esta función es polimórfica porque se comporta de maneras diferentes según
+el objeto que se le pasa como parámetro.
+
+
 # Práctica 7: POO. GEMA. (Lucas Pérez Rosario)
 
 Esta práctica se centrará en la creación y desarrollo de una gema mediante el uso del bundler.

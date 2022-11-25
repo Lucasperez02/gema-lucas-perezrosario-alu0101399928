@@ -2,6 +2,7 @@ module GemaAparcamiento
     # = Clase Vehiculo
     class Vehiculo
         include Comparable
+        include Enumerable
         attr_reader :id, :altura, :anchura, :largo, :peso
         # == Initialize de la clase vehiculo
         def initialize(id, altura, anchura, largo, peso) # :yields: id, altura, anchura, largo, peso
@@ -54,6 +55,14 @@ module GemaAparcamiento
             return nil unless other.instance_of?GemaAparcamiento::Vehiculo
                 
             self.anchura * self.altura * self.largo <=> other.anchura * other.altura * other.largo
+        end
+        # == Método para uso de enumerable
+        def each    
+            yield @id
+            yield @altura
+            yield @anchura
+            yield @largo
+            yield @peso
         end
 
         ORIGIN = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)

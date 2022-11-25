@@ -70,6 +70,7 @@
 
   <ul class="link-list">
     <li><span class="include">Comparable</span>
+    <li><span class="include">Enumerable</span>
   </ul>
 </div>
 
@@ -83,6 +84,7 @@
     <li ><a href="#method-c-count">::count</a>
     <li ><a href="#method-c-new">::new</a>
     <li ><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    <li ><a href="#method-i-each">#each</a>
     <li ><a href="#method-i-to_s">#to_s</a>
   </ul>
 </div>
@@ -188,7 +190,7 @@
           <h2 id="method-c-count-label-M-C3-A9todo+que+se+usar-C3-A1+para+obtener+la+variable+de+clase">Método que se usará para obtener la variable de clase<span><a href="#method-c-count-label-M-C3-A9todo+que+se+usar-C3-A1+para+obtener+la+variable+de+clase">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="count-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 49</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">count</span>()
     <span class="ruby-identifier">@@numero_vehiculos</span>
 <span class="ruby-keyword">end</span></pre>
@@ -209,7 +211,7 @@
           <h2 id="method-c-new-label-Initialize+de+la+clase+vehiculo">Initialize de la clase vehiculo<span><a href="#method-c-new-label-Initialize+de+la+clase+vehiculo">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 7</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">altura</span>, <span class="ruby-identifier">anchura</span>, <span class="ruby-identifier">largo</span>, <span class="ruby-identifier">peso</span>) <span class="ruby-comment"># :yields: id, altura, anchura, largo, peso</span>
     <span class="ruby-comment">#Excepciones para id</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">id</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Integer</span>) <span class="ruby-keyword">or</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
@@ -266,11 +268,36 @@
           <h2 id="method-i-3C-3D-3E-label-Sobrecrga+de+los+operadores+de+comparaci-C3-B3n">Sobrecrga de los operadores de comparación<span><a href="#method-i-3C-3D-3E-label-Sobrecrga+de+los+operadores+de+comparaci-C3-B3n">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="3C-3D-3E-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 53</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>) <span class="ruby-comment"># :yields: other</span>
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">instance_of?</span><span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Vehiculo</span>
         
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">anchura</span> <span class="ruby-operator">*</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">altura</span> <span class="ruby-operator">*</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">largo</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">anchura</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">altura</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">largo</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-each" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">each</span><span
+            class="method-args">() { |id| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-i-each-label-M-C3-A9todo+para+uso+de+enumerable">Método para uso de enumerable<span><a href="#method-i-each-label-M-C3-A9todo+para+uso+de+enumerable">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>    
+    <span class="ruby-keyword">yield</span> <span class="ruby-ivar">@id</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-ivar">@altura</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-ivar">@anchura</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-ivar">@largo</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-ivar">@peso</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -289,7 +316,7 @@
           <h2 id="method-i-to_s-label-M-C3-A9todo+para+mostrar+los+datos+del+vehiculo+por+pantalla">Método para mostrar los datos del vehiculo por pantalla<span><a href="#method-i-to_s-label-M-C3-A9todo+para+mostrar+los+datos+del+vehiculo+por+pantalla">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/vehiculo.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_s</span>()
     <span class="ruby-node">&quot;Vehiculo con id #{@id}, altura #{@altura} m, anchura #{@anchura} m, largo #{@largo} m y un peso de #{@peso} kg&quot;</span>
 <span class="ruby-keyword">end</span></pre>
