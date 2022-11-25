@@ -3,6 +3,7 @@ module GemaAparcamiento
   # = Clase Datos
   class Datos
     attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos, :plazas_minusvalidos_ocupadas, :plazas_ap
+    # == Initialize de la clase Datos
     def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas_ap, distancia, plazas_minusvalidos, plazas_minusvalidos_ocupadas, precio_x_minuto, cjto_vehiculos)
       #Excepciones para accesibilidad
       if !(accesibilidad.is_a? Integer) or accesibilidad < 0
@@ -85,18 +86,19 @@ module GemaAparcamiento
         when tipo_aparcamiento == "minusvalido" then @MINUSVALIDO = [5, 2, 5, 1.5]
       end
     end
-    # Este método initialize de la clase *Datos* recibe los parámetros que serán *variables de instancia* de la clase
-    # En la implementación del método hay condicionales para comprobar que los parámetros que se pasan son correctos.
-    # En otro caso se lanzarán excepciones.
+    # ===Este método initialize de la clase *Datos* recibe los parámetros que serán *variables de instancia* de la clase
+    # ===En la implementación del método hay condicionales para comprobar que los parámetros que se pasan son correctos.
+    # ===En otro caso se lanzarán excepciones.
 
+    # == Método para obtener el número de plazas ocupadas
     def get_plazas_ocupadas()
       @cjto_vehiculos.size
     end
-    #Método para obtener el número de plazas totales
+    # == Método para obtener el número de plazas totales
     def get_plazas_totales()
       @plazas_ap
     end
-    #Método para obtener el número de plazas libres
+    # == Método para obtener el número de plazas libres
     def plazas_libres()
       @plazas_ap - self.get_plazas_ocupadas
     end
@@ -104,11 +106,12 @@ module GemaAparcamiento
     def to_s()
       "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas_ap}. Estacionamiento a #{@distancia} km del centro de la ciudad, tiene #{@plazas_minusvalidos} plazas para minusválidos. Precio por minuto #{@precio_x_minuto} € y tiene #{@cjto_vehiculos.size} vehiculos."
     end
+    # == Método para obtener el número de plazas para minusválidos libres
     def get_plazas_minusvalidos_libres
       @plazas_minusvalidos - @plazas_minusvalidos_ocupadas
     end  
-    #Método para aparcar un vehiculo
-    def insertar_vehiculo(other)
+    # == Método para aparcar un vehiculo
+    def insertar_vehiculo(other) # :yields: other
       if !(other.is_a?GemaAparcamiento::Vehiculo)
         raise ArgumentError.new("El objeto a insertar debe ser un vehiculo")
 
@@ -120,8 +123,8 @@ module GemaAparcamiento
     end
 
 
-    #Método para calcular la duración
-    def duracion_vehiculo(entrada, salida)
+    # == Método para calcular la duración
+    def duracion_vehiculo(entrada, salida)# :yields: entrada, salida
       if !(salida.is_a? Time) or !(entrada.is_a? Time)
         raise ArgumentError.new("Entrada y salida deben ser un objeto time")
       end
@@ -134,9 +137,8 @@ module GemaAparcamiento
       return "La duracion en el estacionamiento fue de #{hora} horas y #{min} minutos"
     end
 
-    #Método para calcular el importe a pagar
-
-    def importe_pagar(t_entrada, t_salida)
+    # == Método para calcular el importe a pagar
+    def importe_pagar(t_entrada, t_salida)# :yields: t_entrada, t_salida
       if !(t_salida.is_a? Time) or !(t_entrada.is_a? Time)
         raise ArgumentError.new("Entrada y salida deben ser un objeto time")
       end

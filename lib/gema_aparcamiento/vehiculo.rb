@@ -56,7 +56,7 @@ module GemaAparcamiento
                 
             self.anchura * self.altura * self.largo <=> other.anchura * other.altura * other.largo
         end
-
+        # == Método para uso de enumerable
         def each    
             yield @id
             yield @altura

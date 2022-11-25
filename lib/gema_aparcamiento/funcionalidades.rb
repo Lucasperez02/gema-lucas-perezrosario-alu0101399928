@@ -20,7 +20,8 @@ module GemaAparcamiento
             end
         end
 
-        def Funcionalidades.cumple_plazas_minusvalidos (aparcamiento)
+        # == Función para saber si se cumple el número de plazas para minusváludos necesarias
+        def Funcionalidades.cumple_plazas_minusvalidos (aparcamiento)# :yields: aparcamiento
             if !(aparcamiento.is_a? GemaAparcamiento::Datos)
                 raise ArgumentError.new("El objeto debe ser de la clase Dato")
             end
@@ -34,11 +35,13 @@ module GemaAparcamiento
             end
         end
 
-        def Funcionalidades.plazas_minus_libres_aparc (aparcamiento)
+        # == Función para obtener el número de plazas para minusválidos libres
+        def Funcionalidades.plazas_minus_libres_aparc (aparcamiento)# :yields: aparcamiento
             aparcamiento.get_plazas_minusvalidos_libres
         end
 
-        def Funcionalidades.vehiculos_estacionados (aparcamiento)
+        # == Función para obtener el número de vehículos estacionados
+        def Funcionalidades.vehiculos_estacionados (aparcamiento) # :yields: aparcamiento
             if aparcamiento.instance_of? GemaAparcamiento::Datos
                 return aparcamiento.cjto_vehiculos.size
             end
