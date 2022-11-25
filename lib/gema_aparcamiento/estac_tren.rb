@@ -25,7 +25,14 @@ module GemaAparcamiento
             return nil unless other.instance_of?GemaAparcamiento::EstacTren
                 
             self.plazas_ap <=> other.plazas_ap
-        end         
+        end
+        
+        def each
+            yield @plazas_ap
+            yield @plazas_minusvalidos
+            yield @plazas_minusvalidos_ocupadas
+            yield @plazas_larga_estancia
+        end
         
     end
 

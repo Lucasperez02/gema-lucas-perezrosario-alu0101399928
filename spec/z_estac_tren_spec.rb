@@ -9,7 +9,8 @@ RSpec.describe GemaAparcamiento do
             @estac_tren3 = GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)
             @t_entrada = Time.new(2022, 11, 25, 9, 0)
             @t_salida = Time.new(2022, 11, 25, 11, 15)
-            @t_salida2 = Time.new(2022, 11, 25, 9, 45)            
+            @t_salida2 = Time.new(2022, 11, 25, 9, 45)
+            @sum = 0            
         end
         it "Expectativas del initialize de EstacTren" do
             expect(GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)).not_to eq(nil)
@@ -56,6 +57,15 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_tren1 != @estac_tren2).to eq(true)
             expect(@estac_tren3.between?(@estac_tren1, @estac_tren2)).to eq(true)
         end
+
+        it "Probando Enumereable en vehiculo" do
+            expect(@estac_tren1.each{|elemento| @sum = @sum + 1}).to eq(4)
+            expect(@estac_tren1.max).to eq(20)
+            expect(@estac_tren1.sort).to eq([1,5,8,20])
+            expect(@estac_tren1.min).to eq(1)
+            expect(@estac_tren1.select{|i| i.between?(1,8)}).to eq([5, 1,8]) 
+        end      
+
     end
 
 
