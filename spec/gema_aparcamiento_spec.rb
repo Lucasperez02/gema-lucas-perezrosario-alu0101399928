@@ -27,6 +27,8 @@ RSpec.describe GemaAparcamiento do
       @apar_no_cumple = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 70, 2, 1, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
       @apar_cumple = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 40, 2, 10, 4, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
       @apar_menos_40 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 30, 2, 0, 0, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+      @aparcamiento_estac_tren = GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)
+      @aparcamiento_estac_aeropuerto = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],3)
     end
     it "Probando la constante LLENO" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
@@ -55,7 +57,14 @@ RSpec.describe GemaAparcamiento do
       expect(GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(@apar_cumple)).to eq(6)
       expect(GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(@apar_no_cumple)).to eq(0)
     end
+
+    it "Probando función para obtener el número de vehiculos en un aparcamiento" do
+      expect(GemaAparcamiento::Funcionalidades.vehiculos_estacionados(@aparcamiento_lleno)).to eq(4)
+      expect(GemaAparcamiento::Funcionalidades.vehiculos_estacionados(@aparcamiento_estac_tren)).to eq("Aparcamiento de una estación de tren con 20 plazas, de las cuales 8 son de larga estancia. El estacionamiento tiene 4 vehiculos")
+      expect(GemaAparcamiento::Funcionalidades.vehiculos_estacionados(@aparcamiento_estac_aeropuerto)).to eq("Aparcamiento de un aeropuerto con 20 plazas, divididas en 3 plantas. El estacionamiento tiene 4 vehiculos")
+    end
   end
+  
   describe GemaAparcamiento::Vehiculo do
     before (:all) do
       @veh1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
