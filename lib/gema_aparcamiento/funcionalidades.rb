@@ -21,11 +21,18 @@ module GemaAparcamiento
             if !(aparcamiento.is_a? GemaAparcamiento::Datos)
                 raise ArgumentError.new("El objeto debe ser de la clase Dato")
             end
+            if aparcamiento.plazas_ap < 40
+                return true
+            end    
             if (aparcamiento.plazas_minusvalidos.to_f/aparcamiento.plazas_ap.to_f) >= (1.0/40.0)
                 return true
             elsif (aparcamiento.plazas_minusvalidos.to_f/aparcamiento.plazas_ap.to_f) < (1.0/40.0)
                 return false
             end
+        end
+
+        def Funcionalidades.plazas_minus_libres_aparc (aparcamiento)
+            aparcamiento.get_plazas_minusvalidos_libres
         end
   
     end

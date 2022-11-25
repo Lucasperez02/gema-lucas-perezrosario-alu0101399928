@@ -24,8 +24,9 @@ RSpec.describe GemaAparcamiento do
       @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)      
       @aparcamiento_libre = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2])
       @aparcamiento_lleno = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 4, 2, 3, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
-      @apar_no_cumple = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 70, 2, 1, 0, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
-      @apar_cumple = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 40, 2, 10, 2, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+      @apar_no_cumple = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 70, 2, 1, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+      @apar_cumple = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 40, 2, 10, 4, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+      @apar_menos_40 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 30, 2, 0, 0, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
     end
     it "Probando la constante LLENO" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
@@ -43,9 +44,16 @@ RSpec.describe GemaAparcamiento do
       expect{GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(1)}.to raise_error(ArgumentError) #El objeto debe ser de la clase Dato 
     end
 
+
     it "Probando función cumple_plazas_minusvalidos" do
       expect(GemaAparcamiento::Funcionalidades.cumple_plazas_minusvalidos(@apar_cumple)).to eq(true)
       expect(GemaAparcamiento::Funcionalidades.cumple_plazas_minusvalidos(@apar_no_cumple)).to eq(false)
+      expect(GemaAparcamiento::Funcionalidades.cumple_plazas_minusvalidos(@apar_menos_40)).to eq(true)
+    end
+
+    it "Probando la función plazas_minus_libres_aparc" do 
+      expect(GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(@apar_cumple)).to eq(6)
+      expect(GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(@apar_no_cumple)).to eq(0)
     end
   end
   describe GemaAparcamiento::Vehiculo do
