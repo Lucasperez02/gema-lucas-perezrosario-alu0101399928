@@ -1,8 +1,8 @@
 module GemaAparcamiento
 
   class Datos
-    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos, :plazas_minusvalidos_ocupadas
-    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, distancia, plazas_minusvalidos, plazas_minusvalidos_ocupadas, precio_x_minuto, cjto_vehiculos)
+    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos, :plazas_minusvalidos_ocupadas, :plazas_ap
+    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas_ap, distancia, plazas_minusvalidos, plazas_minusvalidos_ocupadas, precio_x_minuto, cjto_vehiculos)
       #Excepciones para accesibilidad
       if !(accesibilidad.is_a? Integer) or accesibilidad < 0
         raise ArgumentError.new("El valor de accesibilidad debe ser un int positivo")
@@ -34,14 +34,14 @@ module GemaAparcamiento
         raise ArgumentError.new("El tipo_aparcamiento debe ser un string (autobuses, coches, motos, bicicletas)")
       end
       #Excepciones para plazas
-      if !(plazas.is_a? Integer) or plazas < 0
+      if !(plazas_ap.is_a? Integer) or plazas_ap < 0
         raise ArgumentError.new("El valor de plazas debe ser un int positivo")
       end     
       #Excepciones para plazas_minusvalidos
       if !(plazas_minusvalidos.is_a? Integer) or plazas_minusvalidos < 0
         raise ArgumentError.new("El valor de plazas_minusvalidos debe ser un int positivo")
       end
-      if (plazas_minusvalidos > plazas) 
+      if (plazas_minusvalidos > plazas_ap) 
         raise ArgumentError.new("Las plazas de minusválidos deben ser < que el n_plazas totales")
       end
       #Excepciones para distancia
@@ -56,20 +56,20 @@ module GemaAparcamiento
       if !(cjto_vehiculos[0].is_a? GemaAparcamiento::Vehiculo) or !(cjto_vehiculos.is_a? Array)
         raise ArgumentError.new("El cjto_vehiculos debe ser un array de vehiculos")
       end
-      if cjto_vehiculos.size > plazas
+      if cjto_vehiculos.size > plazas_ap
         raise ArgumentError.new("El conjunto de vehiculos debe ser menor que el numero de plazas y mayor o igual a 0")
       end
       #Excepciones para plazas_minusvalidos_ocupadas
       if !(plazas_minusvalidos_ocupadas.is_a? Integer) or plazas_minusvalidos_ocupadas < 0
         raise ArgumentError.new("El valor de plazas_minusvalidos_ocupadas debe ser un int positivo")
       end
-      if (plazas_minusvalidos_ocupadas > plazas_minusvalidos) or (plazas_minusvalidos_ocupadas > plazas) or (plazas_minusvalidos_ocupadas > cjto_vehiculos.size)
+      if (plazas_minusvalidos_ocupadas > plazas_minusvalidos) or (plazas_minusvalidos_ocupadas > plazas_ap) or (plazas_minusvalidos_ocupadas > cjto_vehiculos.size)
         raise ArgumentError.new("Las plazas de minusválidos ocupadas deben ser < que las plazas de minusválidos totales y las plazas totales en general")
       end             
       #Inicializando las valiables de instancia
       @accesibilidad, @seguridad, @id = accesibilidad, seguridad, id
       @nombre_comercial, @descripcion, @tipo_aparcamiento = nombre_comercial, descripcion, tipo_aparcamiento
-      @plazas = plazas
+      @plazas_ap = plazas_ap
       @plazas_minusvalidos = plazas_minusvalidos
       @distancia, @precio_x_minuto = distancia, precio_x_minuto
       @cjto_vehiculos = cjto_vehiculos
@@ -90,11 +90,11 @@ module GemaAparcamiento
     end
     #Método para obtener el número de plazas totales
     def get_plazas_totales()
-      @plazas
+      @plazas_ap
     end
     #Método para obtener el número de plazas libres
     def plazas_libres()
-      @plazas - self.get_plazas_ocupadas
+      @plazas_ap - self.get_plazas_ocupadas
     end
     #Método para mostrar los datos del aparcamiento por pantalla
     def to_s()
@@ -144,8 +144,6 @@ module GemaAparcamiento
 
       (self.precio_x_minuto * (min + (hora_en_min * 60)))
       
-
-
     end
   end
 end
