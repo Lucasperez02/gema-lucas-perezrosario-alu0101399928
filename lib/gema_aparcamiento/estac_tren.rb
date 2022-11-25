@@ -20,6 +20,12 @@ module GemaAparcamiento
             s << super.to_s
             s << " Corresponde a un estacionamiento de tren que tiene #{@plazas_larga_estancia} plazas de larga estancia."
         end
+
+        def <=>(other)
+            return nil unless other.instance_of?GemaAparcamiento::EstacTren
+                
+            self.plazas_ap <=> other.plazas_ap
+        end         
         
     end
 

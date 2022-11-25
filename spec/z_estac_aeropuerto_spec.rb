@@ -5,6 +5,8 @@ RSpec.describe GemaAparcamiento do
             @veh1_1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
             @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)
             @estac_aeropuerto1 = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],3)
+            @estac_aeropuerto2 = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 25, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],10)
+            @estac_aeropuerto3 = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],10)
             @t_entrada = Time.new(2022, 11, 25, 9, 0)
             @t_salida = Time.new(2022, 11, 25, 11, 15)
             @t_salida2 = Time.new(2022, 11, 25, 9, 45)
@@ -23,7 +25,6 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_aeropuerto1.n_plantas).to eq(3)
             expect(@estac_aeropuerto1.cjto_vehiculos).to eq([@veh1_1, @veh2_2, @veh1_1, @veh2_2])
         end
-
 
         it "Expectativas del to_s" do
             expect(@estac_aeropuerto1.to_s()).to eq("Aparcamiento con accesibilidad 1, seguridad 10 e id 12345. Establecimiento en Mercadona, Mixto y del tipo coches. Plazas totales 20. Estacionamiento a 2 km del centro de la ciudad, tiene 5 plazas para minusválidos. Precio por minuto 0.5 € y tiene 4 vehiculos. Corresponde a un estacionamiento de aeropuerto que tiene 3 plantas.")
@@ -46,7 +47,16 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_aeropuerto1.importe_pagar(@t_entrada, @t_salida)).to eq(67.5)
             expect(@estac_aeropuerto1.importe_pagar(@t_entrada, @t_salida2)).to eq(22.5)
             expect{@estac_aeropuerto1.importe_pagar(@t_salida, @t_entrada)}.to raise_error(ArgumentError)
-        end        
+        end
+        
+        it "Comparable en la clase estacionamiento aeropuerto" do
+            expect(@estac_aeropuerto1 > @estac_aeropuerto2).to eq(false)
+            expect(@estac_aeropuerto1 < @estac_aeropuerto2).to eq(true)
+            expect(@estac_aeropuerto1 == @estac_aeropuerto3).to eq(true)
+            expect(@estac_aeropuerto1 != @estac_aeropuerto2).to eq(true)
+            expect(@estac_aeropuerto3.between?(@estac_aeropuerto1, @estac_aeropuerto2)).to eq(true)
+        end
+        
     end
 
 
