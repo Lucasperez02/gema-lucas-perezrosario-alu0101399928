@@ -22,6 +22,9 @@ A la función se le pasa como parámetro un vehiculo y este se inserta en el con
 Para esta función se pasan el vehiculo al que le calculas su duración en el estacionamietno, su hora de entrada y de salida
 En las expectativas se comprueba que se lanzan las diferentes excepciones del método y también que el método funciona correctamente
 
+## Expectativas para probar el método de calcular el importe a pagar según una duración
+Esta función se encarga de calcular el importe que se pagará en un estacionamiento dependiendo del tiempo que estemos en él
+
 # Práctica 7: POO. GEMA. (Lucas Pérez Rosario)
 
 Esta práctica se centrará en la creación y desarrollo de una gema mediante el uso del bundler.
