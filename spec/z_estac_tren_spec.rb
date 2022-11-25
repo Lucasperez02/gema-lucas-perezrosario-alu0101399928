@@ -4,19 +4,19 @@ RSpec.describe GemaAparcamiento do
         before (:each) do
             @veh1_1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
             @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)
-            @estac_tren1 = GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)
+            @estac_tren1 = GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)
             @t_entrada = Time.new(2022, 11, 25, 9, 0)
             @t_salida = Time.new(2022, 11, 25, 11, 15)
             @t_salida2 = Time.new(2022, 11, 25, 9, 45)            
         end
         it "Expectativas del initialize de EstacTren" do
-            expect(GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)).not_to eq(nil)
-            expect{GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2], -8)}.to raise_error(ArgumentError) #El plazas_larga_estancia debe ser un int positivo
-            expect{GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2], "8")}.to raise_error(ArgumentError) #El plazas_larga_estancia debe ser un int positivo
-            expect{GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2], 32)}.to raise_error(ArgumentError) #El plazas_larga_estancia debe ser < que le n_plazas totales
+            expect(GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)).not_to eq(nil)
+            expect{GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2], -8)}.to raise_error(ArgumentError) #El plazas_larga_estancia debe ser un int positivo
+            expect{GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2], "8")}.to raise_error(ArgumentError) #El plazas_larga_estancia debe ser un int positivo
+            expect{GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2], 32)}.to raise_error(ArgumentError) #El plazas_larga_estancia debe ser < que le n_plazas totales
         end
         it "Expectativas del getter" do
-            expect(@estac_tren1.plazas_minusvalidos).to eq(5)
+            expect(@estac_tren1.plazas_minusvalidos).to eq(5) 
             expect(@estac_tren1.distancia).to eq(2)
             expect(@estac_tren1.precio_x_minuto).to eq(0.5)
             expect(@estac_tren1.plazas_larga_estancia).to eq(8)
@@ -43,7 +43,7 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_tren1.importe_pagar(@t_entrada, @t_salida)).to eq(67.5)
             expect(@estac_tren1.importe_pagar(@t_entrada, @t_salida2)).to eq(22.5)
             expect{@estac_tren1.importe_pagar(@t_salida, @t_entrada)}.to raise_error(ArgumentError)
-        end        
+        end       
     end
 
 

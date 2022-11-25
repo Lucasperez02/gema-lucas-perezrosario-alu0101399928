@@ -1,8 +1,8 @@
 module GemaAparcamiento
 
   class Datos
-    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos
-    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, distancia, plazas_minusvalidos, precio_x_minuto, cjto_vehiculos)
+    attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos, :plazas_minusvalidos_ocupadas
+    def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas, distancia, plazas_minusvalidos, plazas_minusvalidos_ocupadas, precio_x_minuto, cjto_vehiculos)
       #Excepciones para accesibilidad
       if !(accesibilidad.is_a? Integer) or accesibilidad < 0
         raise ArgumentError.new("El valor de accesibilidad debe ser un int positivo")
@@ -38,7 +38,7 @@ module GemaAparcamiento
         raise ArgumentError.new("El valor de plazas debe ser un int positivo")
       end     
       #Excepciones para plazas_minusvalidos
-      if !(plazas_minusvalidos.is_a? Integer) or plazas_minusvalidos <= 0
+      if !(plazas_minusvalidos.is_a? Integer) or plazas_minusvalidos < 0
         raise ArgumentError.new("El valor de plazas_minusvalidos debe ser un int positivo")
       end
       if (plazas_minusvalidos > plazas) 
@@ -59,7 +59,13 @@ module GemaAparcamiento
       if cjto_vehiculos.size > plazas
         raise ArgumentError.new("El conjunto de vehiculos debe ser menor que el numero de plazas y mayor o igual a 0")
       end
-      #Excepciones para accesibilidad              
+      #Excepciones para plazas_minusvalidos_ocupadas
+      if !(plazas_minusvalidos_ocupadas.is_a? Integer) or plazas_minusvalidos_ocupadas < 0
+        raise ArgumentError.new("El valor de plazas_minusvalidos_ocupadas debe ser un int positivo")
+      end
+      if (plazas_minusvalidos_ocupadas > plazas_minusvalidos) or (plazas_minusvalidos_ocupadas > plazas) or (plazas_minusvalidos_ocupadas > cjto_vehiculos.size)
+        raise ArgumentError.new("Las plazas de minusválidos ocupadas deben ser < que las plazas de minusválidos totales y las plazas totales en general")
+      end             
       #Inicializando las valiables de instancia
       @accesibilidad, @seguridad, @id = accesibilidad, seguridad, id
       @nombre_comercial, @descripcion, @tipo_aparcamiento = nombre_comercial, descripcion, tipo_aparcamiento
@@ -67,6 +73,7 @@ module GemaAparcamiento
       @plazas_minusvalidos = plazas_minusvalidos
       @distancia, @precio_x_minuto = distancia, precio_x_minuto
       @cjto_vehiculos = cjto_vehiculos
+      @plazas_minusvalidos_ocupadas = plazas_minusvalidos_ocupadas
 
       #Constantes con las medidas de los aparcamientos según el tipo de aparcamiento
       case tipo_aparcamiento
@@ -93,7 +100,9 @@ module GemaAparcamiento
     def to_s()
       "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas}. Estacionamiento a #{@distancia} km del centro de la ciudad, tiene #{@plazas_minusvalidos} plazas para minusválidos. Precio por minuto #{@precio_x_minuto} € y tiene #{@cjto_vehiculos.size} vehiculos."
     end
-    
+    def get_plazas_minusvalidos_libres
+      @plazas_minusvalidos - @plazas_minusvalidos_ocupadas
+    end  
     #Método para aparcar un vehiculo
     def insertar_vehiculo(other)
       if !(other.is_a?GemaAparcamiento::Vehiculo)
