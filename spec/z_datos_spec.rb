@@ -9,6 +9,7 @@ RSpec.describe GemaAparcamiento do
           @apar3 = GemaAparcamiento::Datos.new(3, 10, 13452,"Carrefour", "Mixto", "coches", 4, 2, 1, 0.5,[@veh1_1, @veh2_2, @veh1_1, @veh2_2])
           @t_entrada = Time.new(2022, 11, 25, 9, 0)
           @t_salida = Time.new(2022, 11, 25, 11, 15)
+          @t_salida2 = Time.new(2022, 11, 25, 9, 45)
         end
     
         it "Instancia de un aparcamiento" do
@@ -78,12 +79,19 @@ RSpec.describe GemaAparcamiento do
         end
 
         it "Probando función para determinar la duración" do 
-          expect(@apar1.duracion_vehiculo(@apar1.cjto_vehiculos[0], @t_entrada, @t_salida)).to eq("La duracion en el estacionamiento fue de 2 horas y 15 minutos")
-          expect{@apar1.duracion_vehiculo(@apar1.cjto_vehiculos[0], @t_salida, @t_entrada)}.to raise_error(ArgumentError) #La hora de salida debe ser mayor que la de entrada
-          expect{@apar1.duracion_vehiculo(@apar1.cjto_vehiculos[0], 1, @t_entrada)}.to raise_error(ArgumentError) #Entrada y salida deben ser un objeto time
+          expect(@apar1.duracion_vehiculo(@t_entrada, @t_salida)).to eq("La duracion en el estacionamiento fue de 2 horas y 15 minutos")
+          expect{@apar1.duracion_vehiculo(@t_salida, @t_entrada)}.to raise_error(ArgumentError) #La hora de salida debe ser mayor que la de entrada
+          expect{@apar1.duracion_vehiculo(1, @t_entrada)}.to raise_error(ArgumentError) #Entrada y salida deben ser un objeto time
 
         end
+    
+        it "Probando la función de calcular el importe a pagar" do
 
+          expect(@apar1.importe_pagar(@t_entrada, @t_salida)).to eq(67.5)
+          expect(@apar1.importe_pagar(@t_entrada, @t_salida2)).to eq(22.5)
+          expect{@apar1.importe_pagar(@t_salida, @t_entrada)}.to raise_error(ArgumentError)
+        end
+       
         it "Jerarquía de herencia de Datos" do
           expect(@apar1.instance_of? GemaAparcamiento::Datos).to eq(true)
           expect(@apar1.is_a? Object).to eq(true)

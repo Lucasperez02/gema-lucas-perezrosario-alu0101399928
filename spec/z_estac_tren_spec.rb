@@ -6,7 +6,8 @@ RSpec.describe GemaAparcamiento do
             @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)
             @estac_tren1 = GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)
             @t_entrada = Time.new(2022, 11, 25, 9, 0)
-            @t_salida = Time.new(2022, 11, 25, 11, 15)            
+            @t_salida = Time.new(2022, 11, 25, 11, 15)
+            @t_salida2 = Time.new(2022, 11, 25, 9, 45)            
         end
         it "Expectativas del initialize de EstacTren" do
             expect(GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)).not_to eq(nil)
@@ -34,11 +35,15 @@ RSpec.describe GemaAparcamiento do
         end
 
         it "Probando función para determinar la duración en estacionamiento de tren" do 
-            expect(@estac_tren1.duracion_vehiculo(@estac_tren1.cjto_vehiculos[0], @t_entrada, @t_salida)).to eq("La duracion en el estacionamiento fue de 2 horas y 15 minutos")
-            expect{@estac_tren1.duracion_vehiculo(@estac_tren1.cjto_vehiculos[0], @t_salida, @t_entrada)}.to raise_error(ArgumentError) #La hora de salida debe ser mayor que la de entrada
-            expect{@estac_tren1.duracion_vehiculo(@estac_tren1.cjto_vehiculos[0], 1, @t_entrada)}.to raise_error(ArgumentError) #Entrada y salida deben ser un objeto time
-  
+            expect(@estac_tren1.duracion_vehiculo(@t_entrada, @t_salida)).to eq("La duracion en el estacionamiento fue de 2 horas y 15 minutos")
+            expect{@estac_tren1.duracion_vehiculo(@t_salida, @t_entrada)}.to raise_error(ArgumentError) #La hora de salida debe ser mayor que la de entrada
+            expect{@estac_tren1.duracion_vehiculo(1, @t_entrada)}.to raise_error(ArgumentError) #Entrada y salida deben ser un objeto time
         end
+        it "Probando la función de calcular el importe a pagar para estacionamiento tren" do
+            expect(@estac_tren1.importe_pagar(@t_entrada, @t_salida)).to eq(67.5)
+            expect(@estac_tren1.importe_pagar(@t_entrada, @t_salida2)).to eq(22.5)
+            expect{@estac_tren1.importe_pagar(@t_salida, @t_entrada)}.to raise_error(ArgumentError)
+        end        
     end
 
 

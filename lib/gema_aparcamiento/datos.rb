@@ -108,17 +108,13 @@ module GemaAparcamiento
 
 
     #Método para calcular la duración
-    def duracion_vehiculo(vehiculo, entrada, salida)
-      if !(vehiculo.is_a? GemaAparcamiento::Vehiculo)
-        raise ArgumentError.new("El objeto debe ser un vehiculo o vehiculo a motor")
-      end
+    def duracion_vehiculo(entrada, salida)
       if !(salida.is_a? Time) or !(entrada.is_a? Time)
         raise ArgumentError.new("Entrada y salida deben ser un objeto time")
       end
       if salida < entrada
         raise ArgumentError.new("La hora de salida debe ser mayor que la hora de entrada")
       end
-      dia = salida.day - entrada.day
       min = salida.min - entrada.min
       hora = salida.hour - entrada.hour
 
@@ -127,6 +123,20 @@ module GemaAparcamiento
 
     #Método para calcular el importe a pagar
 
-  end
+    def importe_pagar(t_entrada, t_salida)
+      if !(t_salida.is_a? Time) or !(t_entrada.is_a? Time)
+        raise ArgumentError.new("Entrada y salida deben ser un objeto time")
+      end
+      if t_salida < t_entrada
+        raise ArgumentError.new("La hora de salida debe ser mayor que la hora de entrada")
+      end
+      min = t_salida.min - t_entrada.min
+      hora_en_min = t_salida.hour - t_entrada.hour
 
+      (self.precio_x_minuto * (min + (hora_en_min * 60)))
+      
+
+
+    end
+  end
 end
