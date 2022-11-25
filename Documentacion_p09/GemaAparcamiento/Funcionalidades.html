@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module GemaAparcamiento::Funcionalidades - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-cumple_plazas_minusvalidos">::cumple_plazas_minusvalidos</a>
+    <li ><a href="#method-c-estado_de_aparcamiento">::estado_de_aparcamiento</a>
+    <li ><a href="#method-c-plazas_minus_libres_aparc">::plazas_minus_libres_aparc</a>
+    <li ><a href="#method-c-vehiculos_estacionados">::vehiculos_estacionados</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-GemaAparcamiento::Funcionalidades">
+  <h1 id="module-GemaAparcamiento::Funcionalidades" class="module">
+    module GemaAparcamiento::Funcionalidades
+  </h1>
+
+  <section class="description">
+    
+<h1 id="module-GemaAparcamiento::Funcionalidades-label-M-C3-B3dulo+funcionalidades">Módulo funcionalidades<span><a href="#module-GemaAparcamiento::Funcionalidades-label-M-C3-B3dulo+funcionalidades">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="APAR_LIBRE">APAR_LIBRE
+        <dd>
+        <dt id="APAR_LLENO">APAR_LLENO
+        <dd><h2 id="label-Constantes+para+el+estado+del+aparcamiento">Constantes para el estado del aparcamiento<span><a href="#label-Constantes+para+el+estado+del+aparcamiento">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><a href="Funcionalidades.html#APAR_LLENO"><code>APAR_LLENO</code></a> = “Lleno”</p>
+</li><li>
+<p><a href="Funcionalidades.html#APAR_LIBRE"><code>APAR_LIBRE</code></a> = “Libre”</p>
+</li></ul>
+      </dl>
+    </section>
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-cumple_plazas_minusvalidos" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">cumple_plazas_minusvalidos</span><span
+            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-c-cumple_plazas_minusvalidos-label-Funci-C3-B3n+para+saber+si+se+cumple+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1ludos+necesarias">Función para saber si se cumple el número de plazas para minusváludos necesarias<span><a href="#method-c-cumple_plazas_minusvalidos-label-Funci-C3-B3n+para+saber+si+se+cumple+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1ludos+necesarias">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="cumple_plazas_minusvalidos-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">cumple_plazas_minusvalidos</span> (<span class="ruby-identifier">aparcamiento</span>)<span class="ruby-comment"># :yields: aparcamiento</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Datos</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;El objeto debe ser de la clase Dato&quot;</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_ap</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">40</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>    
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_minusvalidos</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span><span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_ap</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&gt;=</span> (<span class="ruby-value">1.0</span><span class="ruby-operator">/</span><span class="ruby-value">40.0</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_minusvalidos</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span><span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_ap</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;</span> (<span class="ruby-value">1.0</span><span class="ruby-operator">/</span><span class="ruby-value">40.0</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-estado_de_aparcamiento" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">estado_de_aparcamiento</span><span
+            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-c-estado_de_aparcamiento-label-Funci-C3-B3n+para+obtener+el+estado+de+un+aparcamiento">Función para obtener el estado de un aparcamiento<span><a href="#method-c-estado_de_aparcamiento-label-Funci-C3-B3n+para+obtener+el+estado+de+un+aparcamiento">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="estado_de_aparcamiento-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">estado_de_aparcamiento</span> (<span class="ruby-identifier">aparcamiento</span>) <span class="ruby-comment"># :yields: aparcamiento</span>
+    <span class="ruby-comment">#Excepción para comprobar que el objeto que se pasa es un Datos</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Datos</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;El objeto debe ser de la clase Dato&quot;</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_libres</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-constant">APAR_LLENO</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-constant">APAR_LIBRE</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-plazas_minus_libres_aparc" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">plazas_minus_libres_aparc</span><span
+            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-c-plazas_minus_libres_aparc-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1lidos+libres">Función para obtener el número de plazas para minusválidos libres<span><a href="#method-c-plazas_minus_libres_aparc-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1lidos+libres">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="plazas_minus_libres_aparc-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">plazas_minus_libres_aparc</span> (<span class="ruby-identifier">aparcamiento</span>)<span class="ruby-comment"># :yields: aparcamiento</span>
+    <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">get_plazas_minusvalidos_libres</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-vehiculos_estacionados" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">vehiculos_estacionados</span><span
+            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-c-vehiculos_estacionados-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+veh-C3-ADculos+estacionados">Función para obtener el número de vehículos estacionados<span><a href="#method-c-vehiculos_estacionados-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+veh-C3-ADculos+estacionados">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="vehiculos_estacionados-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">vehiculos_estacionados</span> (<span class="ruby-identifier">aparcamiento</span>) <span class="ruby-comment"># :yields: aparcamiento</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Datos</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">cjto_vehiculos</span>.<span class="ruby-identifier">size</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">EstacTren</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Aparcamiento de una estación de tren con #{aparcamiento.plazas_ap} plazas, de las cuales #{aparcamiento.plazas_larga_estancia} son de larga estancia. El estacionamiento tiene #{aparcamiento.cjto_vehiculos.size} vehiculos&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">EstacAeropuerto</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Aparcamiento de un aeropuerto con #{aparcamiento.plazas_ap} plazas, divididas en #{aparcamiento.n_plantas} plantas. El estacionamiento tiene #{aparcamiento.cjto_vehiculos.size} vehiculos&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;NO es ninguno&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
