@@ -64,7 +64,20 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_tren1.sort).to eq([1,5,8,20])
             expect(@estac_tren1.min).to eq(1)
             expect(@estac_tren1.select{|i| i.between?(1,8)}).to eq([5, 1,8]) 
-        end      
+        end
+        
+        it "Jerarquía de herencia en EstacTren" do
+            expect(@estac_tren1.instance_of? GemaAparcamiento::EstacTren).to eq(true)
+            expect(@estac_tren1.instance_of? GemaAparcamiento::Datos).to eq(false)
+            expect(@estac_tren1.is_a? GemaAparcamiento::Datos).to eq(true)
+            expect(@estac_tren1.is_a? Object).to eq(true)
+            expect(@estac_tren1.is_a? BasicObject).to eq(true)
+            expect(@estac_tren1.instance_of? GemaAparcamiento::Vehiculo).to eq(false)
+            expect(@estac_tren1.instance_of? GemaAparcamiento::Motor).to eq(false)
+            expect(@estac_tren1.instance_of? Numeric).to eq(false)
+            expect(@estac_tren1.instance_of? String).to eq(false)           
+        end
+
 
     end
 
