@@ -10,6 +10,7 @@ RSpec.describe GemaAparcamiento do
             @t_entrada = Time.new(2022, 11, 25, 9, 0)
             @t_salida = Time.new(2022, 11, 25, 11, 15)
             @t_salida2 = Time.new(2022, 11, 25, 9, 45)
+            @sum = 0
         end
         
         it "Expectativas del initialize de EstacAeropuerto" do
@@ -56,6 +57,15 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_aeropuerto1 != @estac_aeropuerto2).to eq(true)
             expect(@estac_aeropuerto3.between?(@estac_aeropuerto1, @estac_aeropuerto2)).to eq(true)
         end
+        
+
+        it "Probando Enumereable en vehiculo" do
+            expect(@estac_aeropuerto1.each{|elemento| @sum = @sum + 1}).to eq(4)
+            expect(@estac_aeropuerto1.max).to eq(20)
+            expect(@estac_aeropuerto1.sort).to eq([1,3,5,20])
+            expect(@estac_aeropuerto1.min).to eq(1)
+            expect(@estac_aeropuerto1.select{|i| i.between?(1,4)}).to eq([1, 3]) 
+        end        
         
     end
 
