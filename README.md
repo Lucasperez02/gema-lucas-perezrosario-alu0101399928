@@ -22,6 +22,10 @@ A la función se le pasa como parámetro un vehiculo y este se inserta en el con
 Para esta función se pasan el vehiculo al que le calculas su duración en el estacionamietno, su hora de entrada y de salida
 En las expectativas se comprueba que se lanzan las diferentes excepciones del método y también que el método funciona correctamente
 
+## Expectativas adicionales (Enumerable, Comparable y Herencia)
+En las clases EstacTren y EstacAeropuerto se han incluido los módulos enumerable y comparable y se sobreescrito funciones
+Además, en ambas clases se han añadido expectativas para demostrar la jerarquía de herencia
+
 ## Expectativas para probar el método de calcular el importe a pagar según una duración
 Esta función se encarga de calcular el importe que se pagará en un estacionamiento dependiendo del tiempo que estemos en él
 
