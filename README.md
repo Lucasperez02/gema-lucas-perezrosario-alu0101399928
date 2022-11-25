@@ -14,6 +14,14 @@ EstacionTren y EstacionAeropuerto. Se definen las expectativas para comprobar el
 Se definen expectativas para probar la función to_s que muestra la información del estacionamiento como una string.
 Esta función hace uso de la función to_s de GemaAparcamiento::Datos, la clase padre.
 
+## Expectativas para probar la función para insertar un vehiculo
+Se definen las expectativas para probar el método con el que se podrá insertar un vehiculo en un estacionamiento.
+A la función se le pasa como parámetro un vehiculo y este se inserta en el conjunto de vehiculos que tiene el estacionamiento.
+
+## Expectativas para probar el método de calcluar la duración de un vehiculo en un estacionamiento
+Para esta función se pasan el vehiculo al que le calculas su duración en el estacionamietno, su hora de entrada y de salida
+En las expectativas se comprueba que se lanzan las diferentes excepciones del método y también que el método funciona correctamente
+
 # Práctica 7: POO. GEMA. (Lucas Pérez Rosario)
 
 Esta práctica se centrará en la creación y desarrollo de una gema mediante el uso del bundler.
