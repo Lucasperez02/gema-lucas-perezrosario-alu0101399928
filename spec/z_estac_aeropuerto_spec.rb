@@ -57,7 +57,7 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_aeropuerto1 != @estac_aeropuerto2).to eq(true)
             expect(@estac_aeropuerto3.between?(@estac_aeropuerto1, @estac_aeropuerto2)).to eq(true)
         end
-        
+
 
         it "Probando Enumereable en vehiculo" do
             expect(@estac_aeropuerto1.each{|elemento| @sum = @sum + 1}).to eq(4)
@@ -66,6 +66,19 @@ RSpec.describe GemaAparcamiento do
             expect(@estac_aeropuerto1.min).to eq(1)
             expect(@estac_aeropuerto1.select{|i| i.between?(1,4)}).to eq([1, 3]) 
         end        
+
+        it "Jerarquía de herencia en EstacAeropuerto" do
+            expect(@estac_aeropuerto1.instance_of? GemaAparcamiento::EstacAeropuerto).to eq(true)
+            expect(@estac_aeropuerto1.instance_of? GemaAparcamiento::EstacTren).to eq(false)
+            expect(@estac_aeropuerto1.instance_of? GemaAparcamiento::Datos).to eq(false)
+            expect(@estac_aeropuerto1.is_a? GemaAparcamiento::Datos).to eq(true)
+            expect(@estac_aeropuerto1.is_a? Object).to eq(true)
+            expect(@estac_aeropuerto1.is_a? BasicObject).to eq(true)
+            expect(@estac_aeropuerto1.instance_of? GemaAparcamiento::Vehiculo).to eq(false)
+            expect(@estac_aeropuerto1.instance_of? GemaAparcamiento::Motor).to eq(false)
+            expect(@estac_aeropuerto1.instance_of? Numeric).to eq(false)
+            expect(@estac_aeropuerto1.instance_of? String).to eq(false)           
+        end
         
     end
 

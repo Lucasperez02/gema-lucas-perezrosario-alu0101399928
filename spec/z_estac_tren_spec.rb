@@ -68,6 +68,7 @@ RSpec.describe GemaAparcamiento do
         
         it "Jerarquía de herencia en EstacTren" do
             expect(@estac_tren1.instance_of? GemaAparcamiento::EstacTren).to eq(true)
+            expect(@estac_aeropuerto1.instance_of? GemaAparcamiento::EstacAeropuerto).to eq(false)
             expect(@estac_tren1.instance_of? GemaAparcamiento::Datos).to eq(false)
             expect(@estac_tren1.is_a? GemaAparcamiento::Datos).to eq(true)
             expect(@estac_tren1.is_a? Object).to eq(true)
