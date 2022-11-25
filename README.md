@@ -25,6 +25,19 @@ En las expectativas se comprueba que se lanzan las diferentes excepciones del m�
 ## Expectativas para probar el método de calcular el importe a pagar según una duración
 Esta función se encarga de calcular el importe que se pagará en un estacionamiento dependiendo del tiempo que estemos en él
 
+# Funcionalidades nuevas
+## Determinar si un aparcamiento cumple con el número de plazas de minusválidos
+En esta función se comprueba que un aparcamiento tiene un número de plazas válido, superior a 1/40 cuando el número de plazas
+supera las 40
+
+## Determinar el número de plazas de minnusválidos libes
+Devuelve el número de plazas libres para minusválidos que hay en el aparcamiento
+
+## Determina el número de vehiculos estacaionados en un aparcamiento
+Devuelve el número de vehiculos estacionados. Esta función es polimórfica porque se comporta de maneras diferentes según
+el objeto que se le pasa como parámetro.
+
+
 # Práctica 7: POO. GEMA. (Lucas Pérez Rosario)
 
 Esta práctica se centrará en la creación y desarrollo de una gema mediante el uso del bundler.
