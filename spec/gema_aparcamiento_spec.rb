@@ -70,6 +70,7 @@ RSpec.describe GemaAparcamiento do
       @veh1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
       @veh2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)
       @veh3 = GemaAparcamiento::Vehiculo.new(61242,2,1.45,4.3, 850)
+      @sum = 0
     end
     it "Probando initialize de vehiculo" do
       expect(GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)).not_to eq(nil)
@@ -96,10 +97,17 @@ RSpec.describe GemaAparcamiento do
 
 
     it "Probando la función de comparación" do
-     
     expect(@veh1 > @veh2).to eq(false)
     expect(@veh1 < @veh2).to eq(true)
     expect(@veh1 == @veh3).to eq(true)
+    end
+
+    it "Probando Enumereable en vehiculo" do
+      expect(@veh1.each{|elemento| @sum = @sum + 1}).to eq(5)
+      expect(@veh1.max).to eq(54321)
+      expect(@veh1.sort).to eq([1.45,2.0,4.3,700.0,54321])
+      expect(@veh1.min).to eq(1.45)
+      expect(@veh1.select{|i| i.between?(1,2)}).to eq([1.45, 2.0]) 
     end
 
     it "Herencias de vehiculo" do
