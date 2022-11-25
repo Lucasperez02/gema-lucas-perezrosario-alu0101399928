@@ -4,7 +4,9 @@ RSpec.describe GemaAparcamiento do
         before (:each) do
             @veh1_1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
             @veh2_2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)
-            @estac_tren1 = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],3)
+            @estac_aeropuerto1 = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],3)
+            @t_entrada = Time.new(2022, 11, 25, 9, 0)
+            @t_salida = Time.new(2022, 11, 25, 11, 15)
         end
         
         it "Expectativas del initialize de EstacAeropuerto" do
@@ -14,17 +16,30 @@ RSpec.describe GemaAparcamiento do
             expect{GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2], 32)}.to raise_error(ArgumentError) #El n_plantas debe ser < que le n_plazas totales
         end
         it "Expectativas del getter" do
-            expect(@estac_tren1.plazas_minusvalidos).to eq(5)
-            expect(@estac_tren1.distancia).to eq(2)
-            expect(@estac_tren1.precio_x_minuto).to eq(0.5)
-            expect(@estac_tren1.n_plantas).to eq(3)
-            expect(@estac_tren1.cjto_vehiculos).to eq([@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+            expect(@estac_aeropuerto1.plazas_minusvalidos).to eq(5)
+            expect(@estac_aeropuerto1.distancia).to eq(2)
+            expect(@estac_aeropuerto1.precio_x_minuto).to eq(0.5)
+            expect(@estac_aeropuerto1.n_plantas).to eq(3)
+            expect(@estac_aeropuerto1.cjto_vehiculos).to eq([@veh1_1, @veh2_2, @veh1_1, @veh2_2])
         end
 
 
         it "Expectativas del to_s" do
-            expect(@estac_tren1.to_s()).to eq("Aparcamiento con accesibilidad 1, seguridad 10 e id 12345. Establecimiento en Mercadona, Mixto y del tipo coches. Plazas totales 20. Estacionamiento a 2 km del centro de la ciudad, tiene 5 plazas para minusválidos. Precio por minuto 0.5 € y tiene 4 vehiculos. Corresponde a un estacionamiento de aeropuerto que tiene 3 plantas.")
-        end        
+            expect(@estac_aeropuerto1.to_s()).to eq("Aparcamiento con accesibilidad 1, seguridad 10 e id 12345. Establecimiento en Mercadona, Mixto y del tipo coches. Plazas totales 20. Estacionamiento a 2 km del centro de la ciudad, tiene 5 plazas para minusválidos. Precio por minuto 0.5 € y tiene 4 vehiculos. Corresponde a un estacionamiento de aeropuerto que tiene 3 plantas.")
+        end
+        
+        it "Probando insertar vehiculo en estacionamiento de aeropuerto" do
+            expect(@estac_aeropuerto1.get_plazas_ocupadas).to eq(4)     
+            @estac_aeropuerto1.insertar_vehiculo(@veh1_1)
+            expect(@estac_aeropuerto1.get_plazas_ocupadas).to eq(5)
+        end
+
+        it "Probando función para determinar la duración en estacionamiento de tren" do 
+            expect(@estac_aeropuerto1.duracion_vehiculo(@estac_aeropuerto1.cjto_vehiculos[0], @t_entrada, @t_salida)).to eq("La duracion en el estacionamiento fue de 2 horas y 15 minutos")
+            expect{@estac_aeropuerto1.duracion_vehiculo(@estac_aeropuerto1.cjto_vehiculos[0], @t_salida, @t_entrada)}.to raise_error(ArgumentError) #La hora de salida debe ser mayor que la de entrada
+            expect{@estac_aeropuerto1.duracion_vehiculo(@estac_aeropuerto1.cjto_vehiculos[0], 3, @t_entrada)}.to raise_error(ArgumentError) #Entrada y salida deben ser un objeto time
+  
+        end
     end
 
 
