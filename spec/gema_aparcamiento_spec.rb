@@ -63,6 +63,27 @@ RSpec.describe GemaAparcamiento do
       expect(GemaAparcamiento::Funcionalidades.vehiculos_estacionados(@aparcamiento_estac_tren)).to eq("Aparcamiento de una estación de tren con 20 plazas, de las cuales 8 son de larga estancia. El estacionamiento tiene 4 vehiculos")
       expect(GemaAparcamiento::Funcionalidades.vehiculos_estacionados(@aparcamiento_estac_aeropuerto)).to eq("Aparcamiento de un aeropuerto con 20 plazas, divididas en 3 plantas. El estacionamiento tiene 4 vehiculos")
     end
+
+    #Expectativas para P10 Programación Funcional
+
+    # it "Estacionamientos con plazas libres y mejor sostenibilidad" do
+
+    # end
+
+    # it "Estacionamientos con plazas minus libres y mejor sostenibilidad" do
+
+    # end
+    
+    # it "Porcentaje de ocupación de cada aparcamiento" do
+
+    # end
+    
+    # it "Porcentaje de plazas de minusválidos libres para cada aparcamiento" do
+
+    # end    
+
+
+
   end
   
 end

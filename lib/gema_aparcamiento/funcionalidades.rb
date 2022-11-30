@@ -47,7 +47,14 @@ module GemaAparcamiento
             end
             return "NO es ninguno"
         end
-  
+
+        #Programación Funcional
+
+        # def Funcionalidades.porcentaje_de_ocupacion (aparcamiento) #Plazas ocupadas / totales * 100
+        #     (aparcamiento.cjto_vehiculos.size / aparcamiento.plazas_ap) * 100
+        # end
+        
+
     end
   
 end

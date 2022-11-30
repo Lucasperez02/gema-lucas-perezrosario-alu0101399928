@@ -1,6 +1,7 @@
 module GemaAparcamiento
 
   class Datos
+    include Comparable
     attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos, :plazas_minusvalidos_ocupadas, :plazas_ap
     def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas_ap, distancia, plazas_minusvalidos, plazas_minusvalidos_ocupadas, precio_x_minuto, cjto_vehiculos)
       #Excepciones para accesibilidad
@@ -145,5 +146,11 @@ module GemaAparcamiento
       (self.precio_x_minuto * (min + (hora_en_min * 60)))
       
     end
+
+    #Práctica Programación Funcional
+
+    # def indice_sostenibilidad # si distancia <= 20.0 y precio > 0.5 (Aceptable, 1), si distancia 20.0-40.0 y precio 0.5-0.1 (Bueno, 2), si distancia <= 40 y precio < 0.1 (Exelente, 3)
+
+    # end
   end
 end
