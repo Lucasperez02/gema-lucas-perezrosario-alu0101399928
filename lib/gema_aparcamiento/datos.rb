@@ -149,8 +149,21 @@ module GemaAparcamiento
 
     #Práctica Programación Funcional
 
-    # def indice_sostenibilidad # si distancia <= 20.0 y precio > 0.5 (Aceptable, 1), si distancia 20.0-40.0 y precio 0.5-0.1 (Bueno, 2), si distancia <= 40 y precio < 0.1 (Exelente, 3)
+    def indice_sostenibilidad # si distancia <= 20.0 y precio > 0.5 (Aceptable, 1), si distancia 20.0-40.0 y precio 0.5-0.1 (Bueno, 2), si distancia <= 40 y precio < 0.1 (Exelente, 3)
+      if (@distancia <= 20.0 and @precio_x_minuto > 0.5)
+        1
+      elsif (@distancia >= 40.0 and @precio_x_minuto < 0.1)
+        3 
+      elsif (@distancia > 20 and @distancia < 40) and (@precio_x_minuto <= 0.5 and @precio_x_minuto >= 0.1)
+        2
+      else
+        nil
+      end
+    end
 
-    # end
+    def <=> (other)
+      return nil unless other.instance_of?GemaAparcamiento::Datos
+      self.indice_sostenibilidad <=> other.indice_sostenibilidad
+    end
   end
 end
