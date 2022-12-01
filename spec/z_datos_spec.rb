@@ -126,7 +126,7 @@ RSpec.describe GemaAparcamiento do
           expect(@apar_aceptable.indice_sostenibilidad).to eq(1)
           expect(@apar_bueno.indice_sostenibilidad).to eq(2)
           expect(@apar_excelente.indice_sostenibilidad).to eq(3)
-          expect(@apar_nil.indice_sostenibilidad).to eq(nil)
+          expect(@apar_nil.indice_sostenibilidad).to eq(0)
         end
 
         it "Expectativas para comparable en datos usando indice de sostenibilidad" do
@@ -134,6 +134,7 @@ RSpec.describe GemaAparcamiento do
           expect(@apar_excelente > @apar_aceptable).to eq(true)
           expect(@apar_aceptable == @apar_aceptable).to eq(true)
           expect(@apar_bueno != @apar_aceptable).to eq(true)
+          expect(@apar_excelente > @apar_nil).to eq(true) 
         end
       end   
 

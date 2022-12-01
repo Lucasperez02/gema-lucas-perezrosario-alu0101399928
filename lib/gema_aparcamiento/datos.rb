@@ -157,7 +157,7 @@ module GemaAparcamiento
       elsif (@distancia > 20 and @distancia < 40) and (@precio_x_minuto <= 0.5 and @precio_x_minuto >= 0.1)
         2
       else
-        nil
+        0
       end
     end
 

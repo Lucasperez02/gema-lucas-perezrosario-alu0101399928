@@ -29,6 +29,19 @@ RSpec.describe GemaAparcamiento do
       @apar_menos_40 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 30, 2, 0, 0, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
       @aparcamiento_estac_tren = GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)
       @aparcamiento_estac_aeropuerto = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],3)
+
+      ######### Conjunto de aparcamientos para prog funcional #######
+
+      @apar_1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 20.0, 5, 3, 0.7,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #libre y aceptable
+      @apar_2 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 22.0, 8, 4, 0.1,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2]) #Libre y bueno
+      @apar_3 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 40.0, 6, 6, 0.05, [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2]) #Libre y excelente. Minus lleno
+      @apar_4 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 11.0, 6, 4, 0.05, [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2]) #Libre y nil
+      @apar_5 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 4, 20.0, 2, 2, 0.7,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #LLeno y aceptable Minus lleno
+      @apar_6 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 4, 22.0, 3, 3, 0.1,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #LLeno y bueno. Minus lleno
+      @apar_7 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 4, 40.0, 2, 2, 0.05, [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #LLeno y excelente. Minus lleno
+      @aparcamientos = [@apar_1, @apar_2, @apar_3, @apar_4, @apar_5, @apar_6, @apar_7]
+
+
     end
     it "Probando la constante LLENO" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
@@ -65,22 +78,29 @@ RSpec.describe GemaAparcamiento do
     end
 
     #Expectativas para P10 Programación Funcional
-
-    # it "Estacionamientos con plazas libres y mejor sostenibilidad" do
-
-    # end
-
-    # it "Estacionamientos con plazas minus libres y mejor sostenibilidad" do
-
-    # end
     
-    # it "Porcentaje de ocupación de cada aparcamiento" do
 
-    # end
+    it "Estacionamientos con plazas libres y mejor sostenibilidad" do
+      #Aparcamiento Libre con maximo índice de sostenibilidad 
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(a) == GemaAparcamiento::Funcionalidades::APAR_LIBRE}).max).to eq(@apar_3)
+      #Aparcamiento Libre con mínimo índice de sostenibilidad
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(a) == GemaAparcamiento::Funcionalidades::APAR_LIBRE}).min).to eq(@apar_4)
+    end
+
+    it "Estacionamientos con plazas minus libres y mejor sostenibilidad" do
+      #Aparcamiento con plazas de minusválidos libre con máximo índice de sostenibilidad
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(a) > 0}).max).to eq(@apar_2)
+      #Aparcamiento con plazas de minusválidos libre con mínimo índice de sostenibilidad
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(a) > 0}).min).to eq(@apar_4)
+    end
     
-    # it "Porcentaje de plazas de minusválidos libres para cada aparcamiento" do
-
-    # end    
+    it "Porcentaje de ocupación de cada aparcamiento" do
+      expect(@aparcamientos.collect{|a| GemaAparcamiento::Funcionalidades.porcentaje_de_ocupacion(a)}).to eq([20.0,40.0,30.0,50.0,100.0,100.0,100.0])
+    end
+    
+    it "Porcentaje de plazas de minusválidos libres para cada aparcamiento" do 
+      expect(@aparcamientos.collect{|a| GemaAparcamiento::Funcionalidades.procentaje_plazas_minus_libres(a)}).to eq([40.00,50.0,0.0,33.33333333333333,0.0,0.0,0.0])
+    end    
 
 
 

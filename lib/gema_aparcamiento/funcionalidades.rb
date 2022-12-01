@@ -50,9 +50,13 @@ module GemaAparcamiento
 
         #Programación Funcional
 
-        # def Funcionalidades.porcentaje_de_ocupacion (aparcamiento) #Plazas ocupadas / totales * 100
-        #     (aparcamiento.cjto_vehiculos.size / aparcamiento.plazas_ap) * 100
-        # end
+        def Funcionalidades.porcentaje_de_ocupacion (aparcamiento) 
+            (aparcamiento.cjto_vehiculos.size.to_f / aparcamiento.plazas_ap.to_f) * 100.0
+        end
+
+        def Funcionalidades.procentaje_plazas_minus_libres (aparcamiento)
+            (aparcamiento.get_plazas_minusvalidos_libres.to_f / aparcamiento.plazas_minusvalidos.to_f) * 100.0
+        end
         
 
     end
