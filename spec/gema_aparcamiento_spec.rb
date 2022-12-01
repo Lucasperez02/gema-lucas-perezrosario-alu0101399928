@@ -78,7 +78,6 @@ RSpec.describe GemaAparcamiento do
     end
 
     #Expectativas para P10 Programación Funcional
-    
 
     it "Estacionamientos con plazas libres y mejor sostenibilidad" do
       #Aparcamiento Libre con maximo índice de sostenibilidad 
@@ -101,8 +100,6 @@ RSpec.describe GemaAparcamiento do
     it "Porcentaje de plazas de minusválidos libres para cada aparcamiento" do 
       expect(@aparcamientos.collect{|a| GemaAparcamiento::Funcionalidades.procentaje_plazas_minus_libres(a)}).to eq([40.00,50.0,0.0,33.33333333333333,0.0,0.0,0.0])
     end    
-
-
 
   end
   

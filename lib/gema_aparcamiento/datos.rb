@@ -100,9 +100,6 @@ module GemaAparcamiento
     #Método para mostrar los datos del aparcamiento por pantalla
     def to_s()
       "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas_ap}. Estacionamiento a #{@distancia} km del centro de la ciudad, tiene #{@plazas_minusvalidos} plazas para minusválidos. Precio por minuto #{@precio_x_minuto} € y tiene #{@cjto_vehiculos.size} vehiculos."
-    end
-    def get_plazas_minusvalidos_libres
-      @plazas_minusvalidos - @plazas_minusvalidos_ocupadas
     end  
     #Método para aparcar un vehiculo
     def insertar_vehiculo(other)
@@ -148,8 +145,12 @@ module GemaAparcamiento
     end
 
     #Práctica Programación Funcional
+    
+    def get_plazas_minusvalidos_libres
+      @plazas_minusvalidos - @plazas_minusvalidos_ocupadas
+    end
 
-    def indice_sostenibilidad # si distancia <= 20.0 y precio > 0.5 (Aceptable, 1), si distancia 20.0-40.0 y precio 0.5-0.1 (Bueno, 2), si distancia <= 40 y precio < 0.1 (Exelente, 3)
+    def indice_sostenibilidad 
       if (@distancia <= 20.0 and @precio_x_minuto > 0.5)
         1
       elsif (@distancia >= 40.0 and @precio_x_minuto < 0.1)
