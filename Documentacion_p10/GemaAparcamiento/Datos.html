@@ -65,6 +65,14 @@
 </div>
 
     
+<div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+    <li><span class="include">Comparable</span>
+  </ul>
+</div>
+
     
     
 <!-- Method Quickref -->
@@ -73,11 +81,13 @@
 
   <ul class="link-list" role="directory">
     <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
     <li ><a href="#method-i-duracion_vehiculo">#duracion_vehiculo</a>
     <li ><a href="#method-i-get_plazas_minusvalidos_libres">#get_plazas_minusvalidos_libres</a>
     <li ><a href="#method-i-get_plazas_ocupadas">#get_plazas_ocupadas</a>
     <li ><a href="#method-i-get_plazas_totales">#get_plazas_totales</a>
     <li ><a href="#method-i-importe_pagar">#importe_pagar</a>
+    <li ><a href="#method-i-indice_sostenibilidad">#indice_sostenibilidad</a>
     <li ><a href="#method-i-insertar_vehiculo">#insertar_vehiculo</a>
     <li ><a href="#method-i-plazas_libres">#plazas_libres</a>
     <li ><a href="#method-i-to_s">#to_s</a>
@@ -246,7 +256,7 @@
           <h2 id="method-c-new-label-Initialize+de+la+clase+Datos">Initialize de la clase <a href="Datos.html"><code>Datos</code></a><span><a href="#method-c-new-label-Initialize+de+la+clase+Datos">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 7</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">accesibilidad</span>, <span class="ruby-identifier">seguridad</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">nombre_comercial</span>, <span class="ruby-identifier">descripcion</span>, <span class="ruby-identifier">tipo_aparcamiento</span>, <span class="ruby-identifier">plazas_ap</span>, <span class="ruby-identifier">distancia</span>, <span class="ruby-identifier">plazas_minusvalidos</span>, <span class="ruby-identifier">plazas_minusvalidos_ocupadas</span>, <span class="ruby-identifier">precio_x_minuto</span>, <span class="ruby-identifier">cjto_vehiculos</span>)
   <span class="ruby-comment">#Excepciones para accesibilidad</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">accesibilidad</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Integer</span>) <span class="ruby-keyword">or</span> <span class="ruby-identifier">accesibilidad</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
@@ -342,6 +352,28 @@
          <h3>Public Instance Methods</h3>
        </header>
 
+      <div id="method-i-3C-3D-3E" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">&lt;=&gt;</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-i-3C-3D-3E-label-Sobrecarga+de+operador+para+comparable">Sobrecarga de operador para comparable<span><a href="#method-i-3C-3D-3E-label-Sobrecarga+de+operador+para+comparable">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="3C-3D-3E-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;=&gt;</span> (<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">instance_of?</span><span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Datos</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">indice_sostenibilidad</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">indice_sostenibilidad</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
       <div id="method-i-duracion_vehiculo" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">duracion_vehiculo</span><span
@@ -353,7 +385,7 @@
           <h2 id="method-i-duracion_vehiculo-label-M-C3-A9todo+para+calcular+la+duraci-C3-B3n">Método para calcular la duración<span><a href="#method-i-duracion_vehiculo-label-M-C3-A9todo+para+calcular+la+duraci-C3-B3n">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="duracion_vehiculo-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 127</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">duracion_vehiculo</span>(<span class="ruby-identifier">entrada</span>, <span class="ruby-identifier">salida</span>)<span class="ruby-comment"># :yields: entrada, salida</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">salida</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Time</span>) <span class="ruby-keyword">or</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">entrada</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Time</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Entrada y salida deben ser un objeto time&quot;</span>)
@@ -380,10 +412,12 @@
         </div>
 
         <div class="method-description">
-          <h2 id="method-i-get_plazas_minusvalidos_libres-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1lidos+libres">Método para obtener el número de plazas para minusválidos libres<span><a href="#method-i-get_plazas_minusvalidos_libres-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1lidos+libres">&para;</a> <a href="#top">&uarr;</a></span></h2>
+          <p>Práctica Programación Funcional</p>
+
+<pre>== Método para obtener las plazas de minusválidos libres</pre>
 
           <div class="method-source-code" id="get_plazas_minusvalidos_libres-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 110</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 154</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_plazas_minusvalidos_libres</span>
   <span class="ruby-ivar">@plazas_minusvalidos</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@plazas_minusvalidos_ocupadas</span>
 <span class="ruby-keyword">end</span></pre>
@@ -404,7 +438,7 @@
           <h2 id="method-i-get_plazas_ocupadas-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+ocupadas">Método para obtener el número de plazas ocupadas<span><a href="#method-i-get_plazas_ocupadas-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+ocupadas">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="get_plazas_ocupadas-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 94</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_plazas_ocupadas</span>()
   <span class="ruby-ivar">@cjto_vehiculos</span>.<span class="ruby-identifier">size</span>
 <span class="ruby-keyword">end</span></pre>
@@ -425,7 +459,7 @@
           <h2 id="method-i-get_plazas_totales-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+totales">Método para obtener el número de plazas totales<span><a href="#method-i-get_plazas_totales-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+totales">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="get_plazas_totales-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 98</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_plazas_totales</span>()
   <span class="ruby-ivar">@plazas_ap</span>
 <span class="ruby-keyword">end</span></pre>
@@ -446,7 +480,7 @@
           <h2 id="method-i-importe_pagar-label-M-C3-A9todo+para+calcular+el+importe+a+pagar">Método para calcular el importe a pagar<span><a href="#method-i-importe_pagar-label-M-C3-A9todo+para+calcular+el+importe+a+pagar">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="importe_pagar-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 141</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">importe_pagar</span>(<span class="ruby-identifier">t_entrada</span>, <span class="ruby-identifier">t_salida</span>)<span class="ruby-comment"># :yields: t_entrada, t_salida</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">t_salida</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Time</span>) <span class="ruby-keyword">or</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">t_entrada</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Time</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Entrada y salida deben ser un objeto time&quot;</span>)
@@ -466,6 +500,35 @@
 
       </div>
 
+      <div id="method-i-indice_sostenibilidad" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">indice_sostenibilidad</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Método para calcular el índice de sostenibilidad de un aparcamiento</p>
+
+          <div class="method-source-code" id="indice_sostenibilidad-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">indice_sostenibilidad</span> 
+  <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@distancia</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">20.0</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@precio_x_minuto</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.5</span>)
+    <span class="ruby-value">1</span>
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@distancia</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40.0</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@precio_x_minuto</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0.1</span>)
+    <span class="ruby-value">3</span> 
+  <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@distancia</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@distancia</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">40</span>) <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@precio_x_minuto</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0.5</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@precio_x_minuto</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0.1</span>)
+    <span class="ruby-value">2</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
       <div id="method-i-insertar_vehiculo" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">insertar_vehiculo</span><span
@@ -477,7 +540,7 @@
           <h2 id="method-i-insertar_vehiculo-label-M-C3-A9todo+para+aparcar+un+vehiculo">Método para aparcar un vehiculo<span><a href="#method-i-insertar_vehiculo-label-M-C3-A9todo+para+aparcar+un+vehiculo">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="insertar_vehiculo-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 114</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">insertar_vehiculo</span>(<span class="ruby-identifier">other</span>) <span class="ruby-comment"># :yields: other</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span><span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Vehiculo</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;El objeto a insertar debe ser un vehiculo&quot;</span>)
@@ -505,7 +568,7 @@
           <h2 id="method-i-plazas_libres-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+libres">Método para obtener el número de plazas libres<span><a href="#method-i-plazas_libres-label-M-C3-A9todo+para+obtener+el+n-C3-BAmero+de+plazas+libres">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="plazas_libres-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 102</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">plazas_libres</span>()
   <span class="ruby-ivar">@plazas_ap</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_plazas_ocupadas</span>
 <span class="ruby-keyword">end</span></pre>
@@ -526,7 +589,7 @@
           <h2 id="method-i-to_s-label-M-C3-A9todo+para+mostrar+los+datos+del+aparcamiento+por+pantalla">Método para mostrar los datos del aparcamiento por pantalla<span><a href="#method-i-to_s-label-M-C3-A9todo+para+mostrar+los+datos+del+aparcamiento+por+pantalla">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 106</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/datos.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_s</span>()
   <span class="ruby-node">&quot;Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas_ap}. Estacionamiento a #{@distancia} km del centro de la ciudad, tiene #{@plazas_minusvalidos} plazas para minusválidos. Precio por minuto #{@precio_x_minuto} € y tiene #{@cjto_vehiculos.size} vehiculos.&quot;</span>
 <span class="ruby-keyword">end</span></pre>
