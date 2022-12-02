@@ -7,11 +7,17 @@ RSpec.describe GemaAparcamiento do
           @apar1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 200, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2])
           @apar2 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 20, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
           @apar3 = GemaAparcamiento::Datos.new(3, 10, 13452,"Carrefour", "Mixto", "coches", 4, 2, 1, 0, 0.5,[@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+
+          @apar_aceptable = GemaAparcamiento::Datos.new(3, 10, 13452,"Carrefour", "Mixto", "coches", 4, 20.0, 1, 0, 0.7,[@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+          @apar_bueno = GemaAparcamiento::Datos.new(3, 10, 13452,"Carrefour", "Mixto", "coches", 4, 22.0, 1, 0, 0.1,[@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+          @apar_excelente = GemaAparcamiento::Datos.new(3, 10, 13452,"Carrefour", "Mixto", "coches", 4, 40.0, 1, 0, 0.05,[@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+          @apar_nil = GemaAparcamiento::Datos.new(3, 10, 13452,"Carrefour", "Mixto", "coches", 4, 11.0, 1, 0, 0.05,[@veh1_1, @veh2_2, @veh1_1, @veh2_2])
+
           @t_entrada = Time.new(2022, 11, 25, 9, 0)
           @t_salida = Time.new(2022, 11, 25, 11, 15)
           @t_salida2 = Time.new(2022, 11, 25, 9, 45)
         end
-    
+      
         it "Instancia de un aparcamiento" do
           expect(GemaAparcamiento::Datos.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 2, 5, 1, 0.5, [@veh1_1, @veh2_2])).not_to eq(nil)
           expect{GemaAparcamiento::Datos.new(-1, 10, 12345, "Mercadona", "Mixto", "coches", 30, 2, 5, 1, 0.5, [@veh1_1, @veh2_2])}.to raise_error(ArgumentError) #El valor de accesibilidad debe ser un int positivo
@@ -114,6 +120,22 @@ RSpec.describe GemaAparcamiento do
           expect(@apar1.is_a? BasicObject).to eq(true)
           expect(@apar1.instance_of? GemaAparcamiento::Vehiculo).to eq(false)
           expect(@apar1.instance_of? GemaAparcamiento::Motor).to eq(false)      
+        end
+
+        # Práctica 10 Programación Funcional
+        it "Expectativas para indice_sostenibilidad" do
+          expect(@apar_aceptable.indice_sostenibilidad).to eq(1)
+          expect(@apar_bueno.indice_sostenibilidad).to eq(2)
+          expect(@apar_excelente.indice_sostenibilidad).to eq(3)
+          expect(@apar_nil.indice_sostenibilidad).to eq(0)
+        end
+
+        it "Expectativas para comparable en datos usando indice de sostenibilidad" do
+          expect(@apar_aceptable < @apar_bueno).to eq(true)
+          expect(@apar_excelente > @apar_aceptable).to eq(true)
+          expect(@apar_aceptable == @apar_aceptable).to eq(true)
+          expect(@apar_bueno != @apar_aceptable).to eq(true)
+          expect(@apar_excelente > @apar_nil).to eq(true) 
         end
       end   
 

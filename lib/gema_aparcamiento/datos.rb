@@ -2,6 +2,7 @@ module GemaAparcamiento
 
   # = Clase Datos
   class Datos
+    include Comparable
     attr_reader :accesibilidad, :seguridad, :id, :nombre_comercial, :descripcion, :tipo_aparcamiento, :distancia, :plazas_minusvalidos, :precio_x_minuto, :cjto_vehiculos, :plazas_minusvalidos_ocupadas, :plazas_ap
     # == Initialize de la clase Datos
     def initialize(accesibilidad, seguridad, id, nombre_comercial, descripcion, tipo_aparcamiento, plazas_ap, distancia, plazas_minusvalidos, plazas_minusvalidos_ocupadas, precio_x_minuto, cjto_vehiculos)
@@ -105,10 +106,6 @@ module GemaAparcamiento
     # == Método para mostrar los datos del aparcamiento por pantalla
     def to_s()
       "Aparcamiento con accesibilidad #{@accesibilidad}, seguridad #{@seguridad} e id #{@id}. Establecimiento en #{@nombre_comercial}, #{@descripcion} y del tipo #{@tipo_aparcamiento}. Plazas totales #{@plazas_ap}. Estacionamiento a #{@distancia} km del centro de la ciudad, tiene #{@plazas_minusvalidos} plazas para minusválidos. Precio por minuto #{@precio_x_minuto} € y tiene #{@cjto_vehiculos.size} vehiculos."
-    end
-    # == Método para obtener el número de plazas para minusválidos libres
-    def get_plazas_minusvalidos_libres
-      @plazas_minusvalidos - @plazas_minusvalidos_ocupadas
     end  
     # == Método para aparcar un vehiculo
     def insertar_vehiculo(other) # :yields: other
@@ -150,6 +147,29 @@ module GemaAparcamiento
 
       (self.precio_x_minuto * (min + (hora_en_min * 60)))
       
+    end
+
+    #Práctica Programación Funcional
+    
+    def get_plazas_minusvalidos_libres
+      @plazas_minusvalidos - @plazas_minusvalidos_ocupadas
+    end
+
+    def indice_sostenibilidad 
+      if (@distancia <= 20.0 and @precio_x_minuto > 0.5)
+        1
+      elsif (@distancia >= 40.0 and @precio_x_minuto < 0.1)
+        3 
+      elsif (@distancia > 20 and @distancia < 40) and (@precio_x_minuto <= 0.5 and @precio_x_minuto >= 0.1)
+        2
+      else
+        0
+      end
+    end
+
+    def <=> (other)
+      return nil unless other.instance_of?GemaAparcamiento::Datos
+      self.indice_sostenibilidad <=> other.indice_sostenibilidad
     end
   end
 end
