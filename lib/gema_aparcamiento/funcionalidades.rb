@@ -29,7 +29,6 @@ module GemaAparcamiento
             if aparcamiento.instance_of? GemaAparcamiento::EstacAeropuerto
                 return "Aparcamiento de un aeropuerto con #{aparcamiento.plazas_ap} plazas, divididas en #{aparcamiento.n_plantas} plantas. El estacionamiento tiene #{aparcamiento.cjto_vehiculos.size} vehiculos"
             end
-            return "NO es ninguno"
         end
 
         #Programación Funcional

@@ -122,6 +122,7 @@ RSpec.describe GemaAparcamiento do
           expect(@apar1.instance_of? GemaAparcamiento::Motor).to eq(false)      
         end
 
+        # Práctica 10 Programación Funcional
         it "Expectativas para indice_sostenibilidad" do
           expect(@apar_aceptable.indice_sostenibilidad).to eq(1)
           expect(@apar_bueno.indice_sostenibilidad).to eq(2)
