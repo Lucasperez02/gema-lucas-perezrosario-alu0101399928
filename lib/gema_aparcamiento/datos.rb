@@ -150,11 +150,12 @@ module GemaAparcamiento
     end
 
     #Práctica Programación Funcional
-    
+    # == Método para obtener las plazas de minusválidos libres
     def get_plazas_minusvalidos_libres
       @plazas_minusvalidos - @plazas_minusvalidos_ocupadas
     end
-
+    
+    ## Método para calcular el índice de sostenibilidad de un aparcamiento
     def indice_sostenibilidad 
       if (@distancia <= 20.0 and @precio_x_minuto > 0.5)
         1
@@ -167,6 +168,7 @@ module GemaAparcamiento
       end
     end
 
+    # == Sobrecarga de operador para comparable
     def <=> (other)
       return nil unless other.instance_of?GemaAparcamiento::Datos
       self.indice_sostenibilidad <=> other.indice_sostenibilidad

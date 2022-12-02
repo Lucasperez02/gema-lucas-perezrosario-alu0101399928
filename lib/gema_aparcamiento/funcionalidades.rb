@@ -33,8 +33,9 @@ module GemaAparcamiento
             end
         end
 
-        #Programación Funcional
+        # = Programación Funcional
         
+        # == Función para comprobar el estado del aparcamiento LLENO O LIBRE
         def Funcionalidades.estado_de_aparcamiento (aparcamiento)
             #Excepción para comprobar que el objeto que se pasa es un Datos
             if !(aparcamiento.is_a? GemaAparcamiento::Datos)
@@ -47,14 +48,17 @@ module GemaAparcamiento
             end
         end
 
+        # == Función para obtener el número de plazas de minusválidos libres
         def Funcionalidades.plazas_minus_libres_aparc (aparcamiento)
             aparcamiento.get_plazas_minusvalidos_libres
         end        
 
+        # == Función para obtener el porcentaje de ocupación de las plazas de un aparcamiento
         def Funcionalidades.porcentaje_de_ocupacion (aparcamiento) 
             (aparcamiento.cjto_vehiculos.size.to_f / aparcamiento.plazas_ap.to_f) * 100.0
         end
 
+        # == Función para obtener el porcentaje de plazas de minusválidos libres en un aparcamiento
         def Funcionalidades.procentaje_plazas_minus_libres (aparcamiento)
             (aparcamiento.get_plazas_minusvalidos_libres.to_f / aparcamiento.plazas_minusvalidos.to_f) * 100.0
         end
