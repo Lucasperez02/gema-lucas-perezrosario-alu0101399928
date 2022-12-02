@@ -7,21 +7,7 @@ module GemaAparcamiento
         APAR_LLENO = "Lleno"
         APAR_LIBRE = "Libre"
 
-        # == Función para obtener el estado de un aparcamiento
-        def Funcionalidades.estado_de_aparcamiento (aparcamiento) # :yields: aparcamiento
-            #Excepción para comprobar que el objeto que se pasa es un Datos
-            if !(aparcamiento.is_a? GemaAparcamiento::Datos)
-                raise ArgumentError.new("El objeto debe ser de la clase Dato")
-            end
-            if aparcamiento.plazas_libres == 0
-                APAR_LLENO
-            else
-                APAR_LIBRE
-            end
-        end
-
-        # == Función para saber si se cumple el número de plazas para minusváludos necesarias
-        def Funcionalidades.cumple_plazas_minusvalidos (aparcamiento)# :yields: aparcamiento
+        def Funcionalidades.cumple_plazas_minusvalidos (aparcamiento)
             if !(aparcamiento.is_a? GemaAparcamiento::Datos)
                 raise ArgumentError.new("El objeto debe ser de la clase Dato")
             end
@@ -35,13 +21,7 @@ module GemaAparcamiento
             end
         end
 
-        # == Función para obtener el número de plazas para minusválidos libres
-        def Funcionalidades.plazas_minus_libres_aparc (aparcamiento)# :yields: aparcamiento
-            aparcamiento.get_plazas_minusvalidos_libres
-        end
-
-        # == Función para obtener el número de vehículos estacionados
-        def Funcionalidades.vehiculos_estacionados (aparcamiento) # :yields: aparcamiento
+        def Funcionalidades.vehiculos_estacionados (aparcamiento)
             if aparcamiento.instance_of? GemaAparcamiento::Datos
                 return aparcamiento.cjto_vehiculos.size
             end
@@ -51,9 +31,39 @@ module GemaAparcamiento
             if aparcamiento.instance_of? GemaAparcamiento::EstacAeropuerto
                 return "Aparcamiento de un aeropuerto con #{aparcamiento.plazas_ap} plazas, divididas en #{aparcamiento.n_plantas} plantas. El estacionamiento tiene #{aparcamiento.cjto_vehiculos.size} vehiculos"
             end
-            return "NO es ninguno"
         end
-  
+
+        # = Programación Funcional
+        
+        # == Función para comprobar el estado del aparcamiento LLENO O LIBRE
+        def Funcionalidades.estado_de_aparcamiento (aparcamiento)
+            #Excepción para comprobar que el objeto que se pasa es un Datos
+            if !(aparcamiento.is_a? GemaAparcamiento::Datos)
+                raise ArgumentError.new("El objeto debe ser de la clase Dato")
+            end
+            if aparcamiento.plazas_libres == 0
+                APAR_LLENO
+            else
+                APAR_LIBRE
+            end
+        end
+
+        # == Función para obtener el número de plazas de minusválidos libres
+        def Funcionalidades.plazas_minus_libres_aparc (aparcamiento)
+            aparcamiento.get_plazas_minusvalidos_libres
+        end        
+
+        # == Función para obtener el porcentaje de ocupación de las plazas de un aparcamiento
+        def Funcionalidades.porcentaje_de_ocupacion (aparcamiento) 
+            (aparcamiento.cjto_vehiculos.size.to_f / aparcamiento.plazas_ap.to_f) * 100.0
+        end
+
+        # == Función para obtener el porcentaje de plazas de minusválidos libres en un aparcamiento
+        def Funcionalidades.procentaje_plazas_minus_libres (aparcamiento)
+            (aparcamiento.get_plazas_minusvalidos_libres.to_f / aparcamiento.plazas_minusvalidos.to_f) * 100.0
+        end
+        
+
     end
   
 end

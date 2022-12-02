@@ -29,6 +29,19 @@ RSpec.describe GemaAparcamiento do
       @apar_menos_40 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 30, 2, 0, 0, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2])
       @aparcamiento_estac_tren = GemaAparcamiento::EstacTren.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5,1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],8)
       @aparcamiento_estac_aeropuerto = GemaAparcamiento::EstacAeropuerto.new(1, 10, 12345, "Mercadona", "Mixto", "coches", 20, 2, 5, 1, 0.5, [@veh1_1, @veh2_2, @veh1_1, @veh2_2],3)
+
+      ######### Conjunto de aparcamientos para prog funcional #######
+
+      @apar_1 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 20.0, 5, 3, 0.7,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #libre y aceptable
+      @apar_2 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 22.0, 8, 4, 0.1,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2]) #Libre y bueno
+      @apar_3 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 40.0, 6, 6, 0.05, [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2]) #Libre y excelente. Minus lleno
+      @apar_4 = GemaAparcamiento::Datos.new(3, 8, 23414, "Carrefour", "Mixto", "coches", 20, 11.0, 6, 4, 0.05, [@veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2, @veh1_1, @veh2_2]) #Libre y nil
+      @apar_5 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 4, 20.0, 2, 2, 0.7,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #LLeno y aceptable Minus lleno
+      @apar_6 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 4, 22.0, 3, 3, 0.1,  [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #LLeno y bueno. Minus lleno
+      @apar_7 = GemaAparcamiento::Datos.new(4, 10,43961,"HiperDino", "Cubierto", "motos", 4, 40.0, 2, 2, 0.05, [@veh1_1, @veh2_2, @veh1_1, @veh2_2]) #LLeno y excelente. Minus lleno
+      @aparcamientos = [@apar_1, @apar_2, @apar_3, @apar_4, @apar_5, @apar_6, @apar_7]
+
+
     end
     it "Probando la constante LLENO" do
       expect(GemaAparcamiento::Funcionalidades::APAR_LLENO).to eq ("Lleno")
@@ -63,107 +76,30 @@ RSpec.describe GemaAparcamiento do
       expect(GemaAparcamiento::Funcionalidades.vehiculos_estacionados(@aparcamiento_estac_tren)).to eq("Aparcamiento de una estación de tren con 20 plazas, de las cuales 8 son de larga estancia. El estacionamiento tiene 4 vehiculos")
       expect(GemaAparcamiento::Funcionalidades.vehiculos_estacionados(@aparcamiento_estac_aeropuerto)).to eq("Aparcamiento de un aeropuerto con 20 plazas, divididas en 3 plantas. El estacionamiento tiene 4 vehiculos")
     end
-  end
-  
-  describe GemaAparcamiento::Vehiculo do
-    before (:all) do
-      @veh1 = GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)
-      @veh2 = GemaAparcamiento::Vehiculo.new(12344, 1.79, 1.85, 5.26, 1200)
-      @veh3 = GemaAparcamiento::Vehiculo.new(61242,2,1.45,4.3, 850)
-      @sum = 0
-    end
-    it "Probando initialize de vehiculo" do
-      expect(GemaAparcamiento::Vehiculo.new(54321, 1.45, 2.0, 4.3, 700.0)).not_to eq(nil)
-      expect{GemaAparcamiento::Vehiculo.new(-12334, 1.45, 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor del id debe ser un int positivo
-      expect{GemaAparcamiento::Vehiculo.new("12334", 1.45, 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor del id debe ser un int positivo
-      expect{GemaAparcamiento::Vehiculo.new(12334, -1.45, 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la altura debe ser un numeric positivo
-      expect{GemaAparcamiento::Vehiculo.new(12334, "1.45", 2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la altura debe ser un numeric positivo
-      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, -2.0, 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la anchura debe ser un numeric positivo
-      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, "2.0", 4.3, 700.0)}.to raise_error(ArgumentError) #El valor de la anchura debe ser un numeric positivo
-      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, -4.3, 700.0)}.to raise_error(ArgumentError) #El valor del largo debe ser un numeric positivo
-      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, "4.3", 700.0)}.to raise_error(ArgumentError) #El valor del largo anchura debe ser un numeric positivo 
-      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, 4.3, -700.0)}.to raise_error(ArgumentError) #El peso debe ser un numeric positivo
-      expect{GemaAparcamiento::Vehiculo.new(12334, 1.45, 2.0, 4.3, "700.0")}.to raise_error(ArgumentError) #El peso anchura debe ser un numeric positivo
-      
-    end
-    it "Probando el variable de clase numero_vehiculo" do
-      expect(GemaAparcamiento::Vehiculo.count()).to eq(7)
+
+    #Expectativas para P10 Programación Funcional
+
+    it "Estacionamientos con plazas libres y mejor sostenibilidad" do
+      #Aparcamiento Libre con maximo índice de sostenibilidad 
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(a) == GemaAparcamiento::Funcionalidades::APAR_LIBRE}).max).to eq(@apar_3)
+      #Aparcamiento Libre con mínimo índice de sostenibilidad
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.estado_de_aparcamiento(a) == GemaAparcamiento::Funcionalidades::APAR_LIBRE}).min).to eq(@apar_4)
     end
 
-    it "Probando función to_s" do
-      expect(@veh1.to_s()).to eq("Vehiculo con id 54321, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg")
-      expect(@veh2.to_s()).to eq("Vehiculo con id 12344, altura 1.79 m, anchura 1.85 m, largo 5.26 m y un peso de 1200 kg")
+    it "Estacionamientos con plazas minus libres y mejor sostenibilidad" do
+      #Aparcamiento con plazas de minusválidos libre con máximo índice de sostenibilidad
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(a) > 0}).max).to eq(@apar_2)
+      #Aparcamiento con plazas de minusválidos libre con mínimo índice de sostenibilidad
+      expect((@aparcamientos.select{|a| GemaAparcamiento::Funcionalidades.plazas_minus_libres_aparc(a) > 0}).min).to eq(@apar_4)
     end
-
-
-    it "Probando la función de comparación" do
-    expect(@veh1 > @veh2).to eq(false)
-    expect(@veh1 < @veh2).to eq(true)
-    expect(@veh1 == @veh3).to eq(true)
+    
+    it "Porcentaje de ocupación de cada aparcamiento" do
+      expect(@aparcamientos.collect{|a| GemaAparcamiento::Funcionalidades.porcentaje_de_ocupacion(a)}).to eq([20.0,40.0,30.0,50.0,100.0,100.0,100.0])
     end
-
-    it "Probando Enumereable en vehiculo" do
-      expect(@veh1.each{|elemento| @sum = @sum + 1}).to eq(5)
-      expect(@veh1.max).to eq(54321)
-      expect(@veh1.sort).to eq([1.45,2.0,4.3,700.0,54321])
-      expect(@veh1.min).to eq(1.45)
-      expect(@veh1.select{|i| i.between?(1,2)}).to eq([1.45, 2.0]) 
-    end
-
-    it "Herencias de vehiculo" do
-      expect(@veh1.instance_of? GemaAparcamiento::Vehiculo).to eq(true)
-      expect(@veh1.is_a? Object).to eq(true)
-      expect(@veh1.is_a? BasicObject).to eq(true)
-      expect(@veh1.instance_of? Numeric).to eq(false)
-      expect(@veh1.instance_of? String).to eq(false)
-    end
-  
-  end
-
-  describe GemaAparcamiento::Motor do
-    before (:all) do
-      @motor1 = GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4,5,1700,100)
-      @motor4 = GemaAparcamiento::Motor.new(54321, 1.45, 2.0, 4.3, 700.0,4,5,2000,180)
-      @motor2 = GemaAparcamiento::Motor.new(54321, 1.45, 2.0, 4.3, 700.0,4,2,2000,180)
-      @motor3 = GemaAparcamiento::Motor.new(96128, 1.45, 2.0, 4.3, 700.0,2,1,1900,180)
-    end
-
-    it "Probando el initialize de vehiculo a motor" do
-      expect(GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0, 4, 5, 1900, 120)).not_to eq(nil) #El peso anchura debe ser un numeric positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,-4, 5, 1900, 120)}.to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,"4", 5, 1900, 120)}.to raise_error(ArgumentError) #El n_ruedas debe ser un int positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, -5, 1900, 120)}.to raise_error(ArgumentError) #El n_plazas debe ser un int positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, "5", 1900, 120)}.to raise_error(ArgumentError) #El n_plazas debe ser un int positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, 5, -1900, 120)}.to raise_error(ArgumentError) #La potencia_motor debe ser un int positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, 5, "1900", 120)}.to raise_error(ArgumentError) #La potencia_motor debe ser un int positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, 5, 1900, -120)}.to raise_error(ArgumentError) #La vel_maxima debe ser un int positivo
-      expect{GemaAparcamiento::Motor.new(12334, 1.45, 2.0, 4.3, 700.0,4, 5, 1900, "120")}.to raise_error(ArgumentError) #La vel_maxima debe ser un int positivo
-    end
-
-    it "Probando la variable de clase de vehiculo" do
-      expect(GemaAparcamiento::Motor.count()).to eq(12)
-    end
- 
-    it "Probado to_s de vehiculo a motor" do
-      expect(@motor1.to_s()).to eq("Vehiculo con id 12334, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 4 ruedas, 5 plazas, potencia de motor de 1700 cc y máximo 100 km hora")
-      expect(@motor2.to_s()).to eq("Vehiculo con id 54321, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 4 ruedas, 2 plazas, potencia de motor de 2000 cc y máximo 180 km hora")
-      expect(@motor3.to_s()).to eq("Vehiculo con id 96128, altura 1.45 m, anchura 2.0 m, largo 4.3 m y un peso de 700.0 kg. Vehiculo a motor de 2 ruedas, 1 plazas, potencia de motor de 1900 cc y máximo 180 km hora")
-    end
-
-    it "Probando los operadores de comparación de Motor" do 
-      expect(@motor1 == @motor4).to eq(true)
-      expect(@motor1 > @motor2).to eq(true)
-      expect(@motor3 < @motor2).to eq(true)
-    end
-
-    it "Herencias de motor" do
-      expect(@motor1.instance_of? GemaAparcamiento::Motor).to eq(true)
-      expect(@motor1.is_a? GemaAparcamiento::Vehiculo).to eq(true)
-      expect(@motor1.is_a? Object).to eq(true)
-      expect(@motor1.is_a? BasicObject).to eq(true)
-      expect(@motor1.instance_of? Numeric).to eq(false)
-      expect(@motor1.instance_of? String).to eq(false)
-    end
+    
+    it "Porcentaje de plazas de minusválidos libres para cada aparcamiento" do 
+      expect(@aparcamientos.collect{|a| GemaAparcamiento::Funcionalidades.procentaje_plazas_minus_libres(a)}).to eq([40.00,50.0,0.0,33.33333333333333,0.0,0.0,0.0])
+    end    
 
   end
   

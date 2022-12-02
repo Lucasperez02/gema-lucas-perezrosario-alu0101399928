@@ -69,6 +69,8 @@
     <li ><a href="#method-c-cumple_plazas_minusvalidos">::cumple_plazas_minusvalidos</a>
     <li ><a href="#method-c-estado_de_aparcamiento">::estado_de_aparcamiento</a>
     <li ><a href="#method-c-plazas_minus_libres_aparc">::plazas_minus_libres_aparc</a>
+    <li ><a href="#method-c-porcentaje_de_ocupacion">::porcentaje_de_ocupacion</a>
+    <li ><a href="#method-c-procentaje_plazas_minus_libres">::procentaje_plazas_minus_libres</a>
     <li ><a href="#method-c-vehiculos_estacionados">::vehiculos_estacionados</a>
   </ul>
 </div>
@@ -117,16 +119,16 @@
       <div id="method-c-cumple_plazas_minusvalidos" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">cumple_plazas_minusvalidos</span><span
-            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+            class="method-args">(aparcamiento)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          <h2 id="method-c-cumple_plazas_minusvalidos-label-Funci-C3-B3n+para+saber+si+se+cumple+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1ludos+necesarias">Función para saber si se cumple el número de plazas para minusváludos necesarias<span><a href="#method-c-cumple_plazas_minusvalidos-label-Funci-C3-B3n+para+saber+si+se+cumple+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1ludos+necesarias">&para;</a> <a href="#top">&uarr;</a></span></h2>
+          
 
           <div class="method-source-code" id="cumple_plazas_minusvalidos-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">cumple_plazas_minusvalidos</span> (<span class="ruby-identifier">aparcamiento</span>)<span class="ruby-comment"># :yields: aparcamiento</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">cumple_plazas_minusvalidos</span> (<span class="ruby-identifier">aparcamiento</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Datos</span>)
         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;El objeto debe ser de la clase Dato&quot;</span>)
     <span class="ruby-keyword">end</span>
@@ -148,16 +150,16 @@
       <div id="method-c-estado_de_aparcamiento" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">estado_de_aparcamiento</span><span
-            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+            class="method-args">(aparcamiento)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          <h2 id="method-c-estado_de_aparcamiento-label-Funci-C3-B3n+para+obtener+el+estado+de+un+aparcamiento">Función para obtener el estado de un aparcamiento<span><a href="#method-c-estado_de_aparcamiento-label-Funci-C3-B3n+para+obtener+el+estado+de+un+aparcamiento">&para;</a> <a href="#top">&uarr;</a></span></h2>
+          <h2 id="method-c-estado_de_aparcamiento-label-Funci-C3-B3n+para+comprobar+el+estado+del+aparcamiento+LLENO+O+LIBRE">Función para comprobar el estado del aparcamiento LLENO O LIBRE<span><a href="#method-c-estado_de_aparcamiento-label-Funci-C3-B3n+para+comprobar+el+estado+del+aparcamiento+LLENO+O+LIBRE">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="estado_de_aparcamiento-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">estado_de_aparcamiento</span> (<span class="ruby-identifier">aparcamiento</span>) <span class="ruby-comment"># :yields: aparcamiento</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">estado_de_aparcamiento</span> (<span class="ruby-identifier">aparcamiento</span>)
     <span class="ruby-comment">#Excepción para comprobar que el objeto que se pasa es un Datos</span>
     <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Datos</span>)
         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;El objeto debe ser de la clase Dato&quot;</span>)
@@ -177,17 +179,59 @@
       <div id="method-c-plazas_minus_libres_aparc" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">plazas_minus_libres_aparc</span><span
-            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+            class="method-args">(aparcamiento)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          <h2 id="method-c-plazas_minus_libres_aparc-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1lidos+libres">Función para obtener el número de plazas para minusválidos libres<span><a href="#method-c-plazas_minus_libres_aparc-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+plazas+para+minusv-C3-A1lidos+libres">&para;</a> <a href="#top">&uarr;</a></span></h2>
+          <h2 id="method-c-plazas_minus_libres_aparc-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+plazas+de+minusv-C3-A1lidos+libres">Función para obtener el número de plazas de minusválidos libres<span><a href="#method-c-plazas_minus_libres_aparc-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+plazas+de+minusv-C3-A1lidos+libres">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="plazas_minus_libres_aparc-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">plazas_minus_libres_aparc</span> (<span class="ruby-identifier">aparcamiento</span>)<span class="ruby-comment"># :yields: aparcamiento</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">plazas_minus_libres_aparc</span> (<span class="ruby-identifier">aparcamiento</span>)
     <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">get_plazas_minusvalidos_libres</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-porcentaje_de_ocupacion" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">porcentaje_de_ocupacion</span><span
+            class="method-args">(aparcamiento)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-c-porcentaje_de_ocupacion-label-Funci-C3-B3n+para+obtener+el+porcentaje+de+ocupaci-C3-B3n+de+las+plazas+de+un+aparcamiento">Función para obtener el porcentaje de ocupación de las plazas de un aparcamiento<span><a href="#method-c-porcentaje_de_ocupacion-label-Funci-C3-B3n+para+obtener+el+porcentaje+de+ocupaci-C3-B3n+de+las+plazas+de+un+aparcamiento">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="porcentaje_de_ocupacion-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">porcentaje_de_ocupacion</span> (<span class="ruby-identifier">aparcamiento</span>) 
+    (<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">cjto_vehiculos</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_ap</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">*</span> <span class="ruby-value">100.0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-procentaje_plazas_minus_libres" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">procentaje_plazas_minus_libres</span><span
+            class="method-args">(aparcamiento)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <h2 id="method-c-procentaje_plazas_minus_libres-label-Funci-C3-B3n+para+obtener+el+porcentaje+de+plazas+de+minusv-C3-A1lidos+libres+en+un+aparcamiento">Función para obtener el porcentaje de plazas de minusválidos libres en un aparcamiento<span><a href="#method-c-procentaje_plazas_minus_libres-label-Funci-C3-B3n+para+obtener+el+porcentaje+de+plazas+de+minusv-C3-A1lidos+libres+en+un+aparcamiento">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+          <div class="method-source-code" id="procentaje_plazas_minus_libres-source">
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">procentaje_plazas_minus_libres</span> (<span class="ruby-identifier">aparcamiento</span>)
+    (<span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">get_plazas_minusvalidos_libres</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">plazas_minusvalidos</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">*</span> <span class="ruby-value">100.0</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -198,16 +242,16 @@
       <div id="method-c-vehiculos_estacionados" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">vehiculos_estacionados</span><span
-            class="method-args">(aparcamiento) { |aparcamiento| ... }</span>
+            class="method-args">(aparcamiento)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          <h2 id="method-c-vehiculos_estacionados-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+veh-C3-ADculos+estacionados">Función para obtener el número de vehículos estacionados<span><a href="#method-c-vehiculos_estacionados-label-Funci-C3-B3n+para+obtener+el+n-C3-BAmero+de+veh-C3-ADculos+estacionados">&para;</a> <a href="#top">&uarr;</a></span></h2>
+          
 
           <div class="method-source-code" id="vehiculos_estacionados-source">
-            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">vehiculos_estacionados</span> (<span class="ruby-identifier">aparcamiento</span>) <span class="ruby-comment"># :yields: aparcamiento</span>
+            <pre><span class="ruby-comment"># File lib/gema_aparcamiento/funcionalidades.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Funcionalidades</span>.<span class="ruby-identifier ruby-title">vehiculos_estacionados</span> (<span class="ruby-identifier">aparcamiento</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">Datos</span>
         <span class="ruby-keyword">return</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">cjto_vehiculos</span>.<span class="ruby-identifier">size</span>
     <span class="ruby-keyword">end</span>
@@ -217,7 +261,6 @@
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">aparcamiento</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">GemaAparcamiento</span><span class="ruby-operator">::</span><span class="ruby-constant">EstacAeropuerto</span>
         <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Aparcamiento de un aeropuerto con #{aparcamiento.plazas_ap} plazas, divididas en #{aparcamiento.n_plantas} plantas. El estacionamiento tiene #{aparcamiento.cjto_vehiculos.size} vehiculos&quot;</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;NO es ninguno&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

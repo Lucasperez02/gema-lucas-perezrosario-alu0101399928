@@ -1,3 +1,24 @@
+# Práctica 10: Programación Funcional (Lucas Pérez Rosario)
+
+Esta práctica se centrará en programar en el paradigma de Programación Funcional.
+Para ello es necesario cambiar algunas de las funciones implementadas anteriormente para que estén en programación funcional.
+Las funciones deben ser puras, sin bucles y sin utilizar variables (no modificarlas)
+
+## Expectativas para el uso de comparable y función de índice de sostenibilidad
+En la clase GemaAparcamiento::Datos se incluye el módulo Comparable y se hacen expectativas para probar su funcionamiento.
+El comparable se hará mediante la comparación del índice de sostenibilidad, lo que se calcula mediante la función de Datos
+indice_sostenibilidad
+
+## Expectativas para las diferentes comprobaciones
+Para los apartados:
+# --> Selecionar el estacionamiento con plazas libres de mayor índice de sostenibilidad
+# --> Selecionar el estacionamiento con plazas de minusválidos libres de mayor índice de sostenibilidad
+# --> Calcular para cada estacionamiento el porcentaje de ocupacion
+# --> Calcular el porcentaje de plazas de minusválidos libres para cada estacionamiento
+
+Se definen expectativas en las que se usan funciones del módulo enumerable ya que se estña trabajando con un array de aparcamientos y ya
+tiene incluido el módulo Enumerable
+
 # Práctica 9: POO. Polimorfismo (Lucas Pérez Rosario)
 
 Esta práctica se centrará en el uso de funciones polimórficas y también en el uso de los módulos enumerable y comparable.
